@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/02/18 11:30:12 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/02/18 11:58:41 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		= wolf3d
 OS			= $(shell uname)
 
 COMPILER	= gcc
-FLAGS		= -Wall -Werror -Wextra -I./includes
+FLAGS		= -Wall -Werror -Wextra -I./includes -g -fsanitize=address
 LIBS		= -L./libs -lft -lmlx -framework OpenGL -framework AppKit
 
 TMP_C		=\
@@ -54,9 +54,9 @@ libs/libft.a	:
 
 libs/libmlx.a	:
 	@echo "Making libmlx... \c"
-	@make -C libs/minilibx_macos/
+	@make -s -C libs/minilibx_macos/
 	@mv libs/minilibx_macos/libmlx.a libs
-	@make -C libs/minilibx_macos/ clean
+	@make -s -C libs/minilibx_macos/ clean
 	@echo "[ok]"
 
 objects/%.o	: srcs/%.c

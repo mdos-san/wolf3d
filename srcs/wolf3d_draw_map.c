@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 11:24:56 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/18 11:31:17 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/18 12:01:36 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	wolf3d_draw_map(t_env *env)
 			if (env->map.map[i][j] == '1')
 				img_putpixel(env, j, i, 0xFF0000);
 			else
-				img_putpixel(env, j, i, 0x0000FF);
+				img_putpixel(env, j, i, 0x00FF00);
 			++j;
 		}
 		j = 0;
