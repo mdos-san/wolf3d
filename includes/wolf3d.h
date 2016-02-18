@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/18 09:02:14 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/18 10:01:27 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <mlx.h>
 # include "libft.h"
+# define WIDTH 1920
+# define HEIGHT 1080
 
 typedef struct	s_2d_pnt
 {
@@ -48,6 +51,7 @@ typedef struct	s_env
 	void		*mlx;
 	void		*win;
 	void		*img;
+	char		*data;
 	int			bpp;
 	int			sl;
 	int			ed;
@@ -58,7 +62,10 @@ typedef struct	s_env
 
 void			wolf3d_init(t_env *env);
 void			wolf3d_exit(t_env **env, char *str);
+void			wolf3d_start(t_env *env);
 void			wolf3d_map_load(t_env *env);
 void			wolf3d_map_del(char ***addr);
+void			img_putpixel(t_env *env, int x, int y, int color);
+void			img_clear(t_env *env);
 
 #endif

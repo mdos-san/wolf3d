@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   img_putpixel.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/18 08:03:34 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/18 09:59:57 by mdos-san         ###   ########.fr       */
+/*   Created: 2016/01/11 21:53:07 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/02/18 09:59:58 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int	main(int ac, char **av)
+void	img_putpixel(t_env *env, int x, int y, int color)
 {
-	t_env	*env;
-
-	if (ac == 2)
-		if (!(env = (t_env*)malloc(sizeof(t_env))))
-			wolf3d_exit(&env, "Error: malloc for t_env.");
-		else
-		{
-			env->ac = ac;
-			env->av = av;
-			wolf3d_init(env);
-			wolf3d_start(env);
-		}
-	else
-		wolf3d_exit(&env, "Usage:\n./wolf3d path/to/map");
-	return (0);
+	if ((0 <= x && x < WIDTH) && (0 <= y && y < HEIGHT))
+		*(unsigned int*)(env->data + x * env->bpp + env->sl * y) =
+			mlx_get_color_value(env->mlx, color);
 }

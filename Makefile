@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/02/18 09:02:43 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/02/18 11:13:10 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,16 @@ OS			= $(shell uname)
 
 COMPILER	= gcc
 FLAGS		= -Wall -Werror -Wextra -I./includes
-LIBS		= -L./libs -lft
+LIBS		= -L./libs -lft -lmlx -framework OpenGL -framework AppKit
 
 TMP_C		=\
 			wolf3d_init.c\
+			wolf3d_start.c\
 			wolf3d_exit.c\
 			wolf3d_map_load.c\
 			wolf3d_map_del.c\
+			img_putpixel.c\
+			img_clear.c\
 			main.c
 SRC_C		= $(TMP_C:%=src/%)
 
@@ -31,9 +34,9 @@ SRC_O		= $(TMP_O:%=objects/%)
 
 all			: $(NAME)
 
-$(NAME)		: objects libs/libft.a $(SRC_O)
+$(NAME)		: objects libs/libft.a libs/libmlx.a $(SRC_O)
 	@echo "Creating wolf3d... \c"
-	@$(COMPILER) $(FLAGS) -o $(NAME) $(SRC_O) $(LIBS)
+	@$(COMPILER) $(FLAGS)  $(LIBS) -o $(NAME) $(SRC_O)
 	@echo "[ok]"
 
 objects: 
@@ -43,9 +46,16 @@ objects:
 
 libs/libft.a	:
 	@echo "Making libft... \c"
-	@make --silent -C libs/libft
+	@make -C libs/libft
 	@mv libs/libft/libft.a libs
 	@make -C libs/libft/ fclean
+	@echo "[ok]"
+
+libs/libmlx.a	:
+	@echo "Making libmlx... \c"
+	@make -C libs/minilibx_macos/
+	@mv libs/minilibx_macos/libmlx.a libs
+	@make -C libs/minilibx_macos/ clean
 	@echo "[ok]"
 
 objects/%.o	: srcs/%.c
@@ -63,6 +73,7 @@ fclean		: clean
 	@echo "Removing all compiled files... \c"
 	@rm -rf $(NAME)
 	@rm -rf libs/libft.a
+	@rm -rf libs/libmlx.a
 	@echo "[ok]"
 
 re			: fclean all

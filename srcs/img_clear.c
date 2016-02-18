@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   img_clear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/18 08:03:34 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/18 09:59:57 by mdos-san         ###   ########.fr       */
+/*   Created: 2016/01/11 21:53:09 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/02/18 09:56:36 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int	main(int ac, char **av)
+void	img_clear(t_env *env)
 {
-	t_env	*env;
-
-	if (ac == 2)
-		if (!(env = (t_env*)malloc(sizeof(t_env))))
-			wolf3d_exit(&env, "Error: malloc for t_env.");
-		else
-		{
-			env->ac = ac;
-			env->av = av;
-			wolf3d_init(env);
-			wolf3d_start(env);
-		}
-	else
-		wolf3d_exit(&env, "Usage:\n./wolf3d path/to/map");
-	return (0);
+	if (env->img)
+		mlx_destroy_image(env->mlx, env->img);
+	if ((env->img = mlx_new_image(env->mlx, WIDTH, HEIGHT)) == NULL)
+		wolf3d_exit(&env, "img_clear: mlx_new_image");
+	env->data = mlx_get_data_addr(env->img, &env->bpp, &env->sl, &env->ed);
+	env->bpp /= 8;
 }
