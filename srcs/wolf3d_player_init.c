@@ -1,24 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wolf3d_start.c                                     :+:      :+:    :+:   */
+/*   wolf3d_player_init.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/18 10:55:58 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/18 13:52:50 by mdos-san         ###   ########.fr       */
+/*   Created: 2016/02/18 13:06:33 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/02/18 13:37:10 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	wolf3d_start(t_env *env)
+int	wolf3d_player_init(t_env *env)
 {
-	wolf3d_map_draw(env);
-	wolf3d_player_draw(env);
-	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
-	event_key(env);
-	mlx_expose_hook(env->win, hook_expose, env);
-	mlx_loop_hook(env->mlx, hook_loop, env);
-	mlx_loop(env->mlx);
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	env->player.movement = 0;
+	while (env->map.map[i])
+	{
+		while (env->map.map[i][j])
+		{
+			if (env->map.map[i][j] == '#')
+			{
+				env->player.pos.x = (double)j + 0.5;
+				env->player.pos.y = (double)i + 0.5;
+				return (1);
+			}
+			++j;
+		}
+		j = 0;
+		++i;
+	}
+	return (-1);
 }

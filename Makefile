@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/02/18 11:58:41 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/02/18 13:53:25 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,14 @@ TMP_C		=\
 			wolf3d_exit.c\
 			wolf3d_map_load.c\
 			wolf3d_map_del.c\
-			wolf3d_draw_map.c\
+			wolf3d_map_draw.c\
+			wolf3d_player_init.c\
+			wolf3d_player_draw.c\
 			img_putpixel.c\
 			img_clear.c\
+			event_key.c\
+			hook_loop.c\
+			hook_expose.c\
 			main.c
 SRC_C		= $(TMP_C:%=src/%)
 
