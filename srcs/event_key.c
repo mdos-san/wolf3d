@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:31:19 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/18 14:04:03 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/18 14:50:47 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int		key_press(int keycode, t_env *env)
 {
-	(keycode == 13) ? (env->player.movement_y = 1) : 0;
-	(keycode == 1) ? (env->player.movement_y = 2) : 0;
-	(keycode == 0) ? (env->player.movement_x = 3) : 0;
-	(keycode == 2) ? (env->player.movement_x = 4) : 0;
+	(keycode == 13) ? (env->player.movement_y = -1) : 0;
+	(keycode == 1) ? (env->player.movement_y = 1) : 0;
+	(keycode == 0) ? (env->player.movement_x = -1) : 0;
+	(keycode == 2) ? (env->player.movement_x = 1) : 0;
 	(keycode == 53) ? wolf3d_exit(&env, "Esc key pressed, good bye ! :D") : 0;
 	return (1);
 }
