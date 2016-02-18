@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/02/18 08:12:35 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/02/18 09:02:43 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ LIBS		= -L./libs -lft
 TMP_C		=\
 			wolf3d_init.c\
 			wolf3d_exit.c\
+			wolf3d_map_load.c\
+			wolf3d_map_del.c\
 			main.c
 SRC_C		= $(TMP_C:%=src/%)
 
