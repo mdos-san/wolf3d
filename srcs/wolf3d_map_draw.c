@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:20:19 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/18 13:20:34 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/18 15:29:28 by ahamouda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	draw_block(t_env *env, int x, int y, unsigned int color)
 	}
 }
 
-void	wolf3d_map_draw(t_env *env)
+void		wolf3d_map_draw(t_env *env)
 {
 	int	i;
 	int	j;

@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:17:34 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/18 09:29:10 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/18 15:26:50 by ahamouda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	get_nb_line(t_env *env)
 	n = 0;
 	line = NULL;
 	if ((env->fd = open(env->av[1], O_RDWR)) == -1)
-		wolf3d_exit(&env, "Error, open returned -1.");
+		wolf3d_exit(&env, "get_nb_line: open returned -1.");
 	while ((ret = get_next_line(env->fd, &line)) > 0)
 		++n;
 	(ret == -1) ? wolf3d_exit(&env, "wolf3d_map_load: gnl") : 0;

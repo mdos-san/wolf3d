@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wolf3d_start.c                                     :+:      :+:    :+:   */
+/*   2d_vec_rotate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahamouda <ahamouda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/18 10:55:58 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/18 15:21:16 by ahamouda         ###   ########.fr       */
+/*   Created: 2016/02/18 15:35:36 by ahamouda          #+#    #+#             */
+/*   Updated: 2016/02/18 15:44:20 by ahamouda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	wolf3d_start(t_env *env)
+void	vec_rotate_2d(t_2d_vec *vec, double angle)
 {
-	event_key(env);
-	mlx_expose_hook(env->win, hook_expose, env);
-	mlx_loop_hook(env->mlx, hook_loop, env);
-	mlx_loop(env->mlx);
+	double	tmp_x;
+
+	tmp_x = vec->x;
+	angle = angle * M_PI / 180;
+	vec->x = vec->x * cos(angle) - vec->y * sin(angle);
+	vec->y = vec->y * cos(angle) + tmp_x * sin(angle);
 }

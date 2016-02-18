@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/02/18 13:53:25 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/02/18 16:09:55 by ahamouda         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,20 +27,29 @@ TMP_C		=\
 			wolf3d_map_draw.c\
 			wolf3d_player_init.c\
 			wolf3d_player_draw.c\
+			wolf3d_player_move.c\
 			img_putpixel.c\
 			img_clear.c\
 			event_key.c\
 			hook_loop.c\
 			hook_expose.c\
+			vec_rotate_2d.c\
 			main.c
 SRC_C		= $(TMP_C:%=src/%)
+
+TMP_H		=\
+			wolf3d.h\
+			libft.h\
+			mlx.h
+
+SRC_H		= $(TMP_H:%=includes/%)
 
 TMP_O		= $(TMP_C:.c=.o)
 SRC_O		= $(TMP_O:%=objects/%)
 
 all			: $(NAME)
 
-$(NAME)		: objects libs/libft.a libs/libmlx.a $(SRC_O)
+$(NAME)		: objects libs/libft.a libs/libmlx.a $(SRC_O) $(SRC_H)
 	@echo "Creating wolf3d... \c"
 	@$(COMPILER) $(FLAGS)  $(LIBS) -o $(NAME) $(SRC_O)
 	@echo "[ok]"
@@ -64,6 +73,11 @@ libs/libmlx.a	:
 	@make -s -C libs/minilibx_macos/ clean
 	@echo "[ok]"
 
+gupdate	:
+	git add srcs includes Makefile
+	git commit -m "update"
+	git push origin dev
+
 objects/%.o	: srcs/%.c
 	@echo "Compiling $<... \c"
 	@$(COMPILER) $(FLAGS) -c $<
@@ -75,6 +89,9 @@ clean		:
 	@rm -rf objects
 	@echo "[ok]"
 
+norme		:
+	norminette srcs includes
+
 fclean		: clean
 	@echo "Removing all compiled files... \c"
 	@rm -rf $(NAME)
@@ -83,3 +100,5 @@ fclean		: clean
 	@echo "[ok]"
 
 re			: fclean all
+
+.PHONY: re fclean clean all

@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wolf3d_start.c                                     :+:      :+:    :+:   */
+/*   wolf3d_player_move.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahamouda <ahamouda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/18 10:55:58 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/18 15:21:16 by ahamouda         ###   ########.fr       */
+/*   Created: 2016/02/18 16:07:43 by ahamouda          #+#    #+#             */
+/*   Updated: 2016/02/18 17:04:13 by ahamouda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	wolf3d_start(t_env *env)
+void	wolf3d_player_move(t_env *env, double x, double y)
 {
-	event_key(env);
-	mlx_expose_hook(env->win, hook_expose, env);
-	mlx_loop_hook(env->mlx, hook_loop, env);
-	mlx_loop(env->mlx);
+	if (env->map.map[(int)(env->player.pos.y + y)][(int)(env->player.pos.x + x)] != '1')
+	{
+		env->player.pos.x += x;
+		env->player.pos.y += y;
+	}
 }
