@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/18 10:01:27 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/18 11:29:39 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void			wolf3d_exit(t_env **env, char *str);
 void			wolf3d_start(t_env *env);
 void			wolf3d_map_load(t_env *env);
 void			wolf3d_map_del(char ***addr);
+void			wolf3d_draw_map(t_env *env);
 void			img_putpixel(t_env *env, int x, int y, int color);
 void			img_clear(t_env *env);
 

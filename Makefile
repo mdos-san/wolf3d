@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/02/18 11:13:10 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/02/18 11:30:12 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ TMP_C		=\
 			wolf3d_exit.c\
 			wolf3d_map_load.c\
 			wolf3d_map_del.c\
+			wolf3d_draw_map.c\
 			img_putpixel.c\
 			img_clear.c\
 			main.c

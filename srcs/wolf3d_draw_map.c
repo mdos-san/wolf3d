@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wolf3d_exit.c                                      :+:      :+:    :+:   */
+/*   wolf3d_draw_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/18 08:09:51 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/18 11:34:17 by mdos-san         ###   ########.fr       */
+/*   Created: 2016/02/18 11:24:56 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/02/18 11:31:17 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	wolf3d_exit(t_env **env, char *str)
+void	wolf3d_draw_map(t_env *env)
 {
-	if (*env)
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (env->map.map[i])
 	{
-		wolf3d_map_del(&(*env)->map.map);
-		if ((*env)->img)
-			mlx_destroy_image((*env)->mlx, (*env)->img);
-		if ((*env)->win)
-			mlx_destroy_window((*env)->mlx, (*env)->win);
-		free(*env);
+		while (env->map.map[i][j])
+		{
+			if (env->map.map[i][j] == '1')
+				img_putpixel(env, j, i, 0xFF0000);
+			else
+				img_putpixel(env, j, i, 0x0000FF);
+			++j;
+		}
+		j = 0;
+		++i;
 	}
-	ft_putendl(str);
-	exit(0);
 }
