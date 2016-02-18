@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/02/18 07:42:08 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/02/18 08:12:35 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ FLAGS		= -Wall -Werror -Wextra -I./includes
 LIBS		= -L./libs -lft
 
 TMP_C		=\
+			wolf3d_init.c\
+			wolf3d_exit.c\
 			main.c
 SRC_C		= $(TMP_C:%=src/%)
 
