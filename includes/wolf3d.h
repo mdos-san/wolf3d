@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/19 11:12:16 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/19 11:35:12 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <mlx.h>
 # include "libft.h"
+# include <stdio.h>
 # define KEYPRESS 2
 # define KEYPRESSMASK (1L<<0)
 # define WIDTH 1920
@@ -87,6 +88,7 @@ void			wolf3d_map_draw(t_env *env);
 int				wolf3d_player_init(t_env *env);
 void			wolf3d_player_draw(t_env *env);
 void			wolf3d_player_move(t_env *env, double x, double y);
+void			wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color);
 void			img_putpixel(t_env *env, int x, int y, int color);
 void			img_putline(t_env *par, t_2d_pnt a, t_2d_pnt b,
 														unsigned int color);

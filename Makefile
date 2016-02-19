@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/02/19 10:23:52 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/02/19 11:30:03 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ TMP_C		=\
 			wolf3d_player_init.c\
 			wolf3d_player_draw.c\
 			wolf3d_player_move.c\
+			wolf3d_ray_draw.c\
 			img_putpixel.c\
 			img_putline.c\
 			img_clear.c\
