@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/02/19 11:30:03 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/02/19 13:07:13 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,8 @@ TMP_C		=\
 			hook_loop.c\
 			hook_expose.c\
 			vec_rotate_2d.c\
+			pnt_2d_new.c\
+			pnt_2d_del.c\
 			main.c
 SRC_C		= $(TMP_C:%=src/%)
 

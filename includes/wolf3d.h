@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/19 11:35:12 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/19 13:15:43 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,11 @@ void			event_key(t_env *env);
 int				hook_loop(t_env *env);
 int				hook_expose(t_env *env);
 void			vec_rotate_2d(t_2d_vec *vec, double angle);
+t_2d_pnt		*pnt_2d_new(double x, double y);
+void			pnt_2d_del(t_2d_pnt **addr);
+t_2d_pnt		pnt_2d_get(double x, double y);
+t_2d_vec		*vec_2d_new(double x, double y);
+void			vec_2d_del(t_2d_vec **addr);
+t_2d_vec		vec_2d_get(double x, double y);
 
 #endif
