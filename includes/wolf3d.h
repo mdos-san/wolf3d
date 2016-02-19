@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/18 17:07:26 by ahamouda         ###   ########.fr       */
+/*   Updated: 2016/02/19 10:20:58 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int				wolf3d_player_init(t_env *env);
 void			wolf3d_player_draw(t_env *env);
 void			wolf3d_player_move(t_env *env, double x, double y);
 void			img_putpixel(t_env *env, int x, int y, int color);
+void			img_putline(t_env *par, t_2d_pnt a, t_2d_pnt b,
+														unsigned int color);
 void			img_clear(t_env *env);
 void			event_key(t_env *env);
 int				hook_loop(t_env *env);

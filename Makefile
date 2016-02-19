@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/02/18 16:09:55 by ahamouda         ###   ########.fr        #
+#    Updated: 2016/02/19 10:23:52 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ TMP_C		=\
 			wolf3d_player_draw.c\
 			wolf3d_player_move.c\
 			img_putpixel.c\
+			img_putline.c\
 			img_clear.c\
 			event_key.c\
 			hook_loop.c\

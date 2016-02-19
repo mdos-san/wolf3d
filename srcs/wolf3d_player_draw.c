@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:15:05 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/18 17:12:51 by ahamouda         ###   ########.fr       */
+/*   Updated: 2016/02/19 10:27:57 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,8 @@ void	wolf3d_player_draw(t_env *env)
 		}
 		++j;
 	}
+	img_putline(env,
+	(t_2d_pnt){env->player.pos.x * BLOCK, env->player.pos.y * BLOCK},
+	(t_2d_pnt){(env->player.pos.x + env->player.view_dir.x) * BLOCK,
+	(env->player.pos.y + env->player.view_dir.y) * BLOCK}, 0xff00ff);
 }
