@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/19 10:20:58 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/19 11:12:16 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ typedef struct	s_2d_vec
 	double	y;
 }				t_2d_vec;
 
+typedef struct	s_2d_ray
+{
+	t_2d_pnt	o;
+	t_2d_vec	dir;
+	t_2d_pnt	inter;
+}				t_2d_ray;
+
 typedef struct	s_player
 {
 	t_2d_pnt	pos;
@@ -66,11 +73,12 @@ typedef struct	s_env
 	int			ed;
 	t_map		map;
 	t_player	player;
+	t_2d_ray	ray;
 	int			player_size;
 	int			i;
 }				t_env;
 
-void			wolf3d_init(t_env *env);
+t_env			*wolf3d_init(int ac, char **av);
 void			wolf3d_exit(t_env **env, char *str);
 void			wolf3d_start(t_env *env);
 void			wolf3d_map_load(t_env *env);
