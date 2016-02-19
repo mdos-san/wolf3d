@@ -20,7 +20,7 @@ int	hook_expose(t_env *env)
 	i = 0;
 	nbr = WIDTH / 2;
 	img_clear(env);
-	wolf3d_map_draw(env);
+//	wolf3d_map_draw(env);
 	wolf3d_player_draw(env);
 	env->ray.o = env->player.pos;
 	while (i < nbr)

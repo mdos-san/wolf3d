@@ -15,8 +15,14 @@ NAME		= wolf3d
 OS			= $(shell uname)
 
 COMPILER	= gcc
-FLAGS		= -Wall -Werror -Wextra -I./includes -g -fsanitize=address
-LIBS		= -L./libs -lft -lmlx -framework OpenGL -framework AppKit
+FLAGS		= -Wall -Werror -Wextra -g -fsanitize=address -I./includes
+LIBS		= -L./libs -lm -lft -lmlx -framework OpenGL -framework AppKit
+MLX_DIR		= minilibx_macos
+
+ifeq ($(OS), Linux)
+LIBS		= -L./libs -lm -lft -lmlx -lX11 -lXext
+MLX_DIR		= minilibx_linux
+endif
 
 TMP_C		=\
 			wolf3d_init.c\
@@ -57,7 +63,7 @@ all			: $(NAME)
 
 $(NAME)		: objects libs/libft.a libs/libmlx.a $(SRC_O) $(SRC_H)
 	@echo "Creating wolf3d... \c"
-	@$(COMPILER) $(FLAGS)  $(LIBS) -o $(NAME) $(SRC_O)
+	@$(COMPILER) $(FLAGS) -o $(NAME) $(SRC_O) $(LIBS)
 	@echo "[ok]"
 
 objects: 
@@ -74,9 +80,10 @@ libs/libft.a	:
 
 libs/libmlx.a	:
 	@echo "Making libmlx... \c"
-	@make -s -C libs/minilibx_macos/
-	@mv libs/minilibx_macos/libmlx.a libs
-	@make -s -C libs/minilibx_macos/ clean
+	@echo $(MLX_DIR)
+	@make -s -C libs/$(MLX_DIR)/
+	@mv libs/$(MLX_DIR)/libmlx.a libs
+	@make -s -C libs/$(MLX_DIR)/ clean
 	@echo "[ok]"
 
 gupdate	:

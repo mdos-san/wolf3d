@@ -21,8 +21,8 @@
 # include <stdio.h>
 # define KEYPRESS 2
 # define KEYPRESSMASK (1L<<0)
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 800
+# define HEIGHT 600
 # define BLOCK 10
 # define TITLE "WOLF3D"
 # define PLAYER_SIZE 2
