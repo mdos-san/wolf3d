@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/19 13:15:43 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/19 14:58:29 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define BLOCK 20
 # define TITLE "WOLF3D"
 # define PLAYER_SIZE 5
+# define PCNT PLAYER_SIZE / 2
 
 typedef struct	s_2d_pnt
 {
@@ -75,6 +76,7 @@ typedef struct	s_env
 	t_map		map;
 	t_player	player;
 	t_2d_ray	ray;
+	t_2d_ray	ray2;
 	int			player_size;
 	int			i;
 }				t_env;

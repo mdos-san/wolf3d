@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 11:19:21 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/19 12:25:56 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/19 15:00:51 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color)
 	else
 		exeption(env, a, b);
 	img_putline(env,
-	(t_2d_pnt){env->player.pos.x, env->player.pos.y},
+	(t_2d_pnt){env->player.pos.x + PCNT, env->player.pos.y + PCNT},
 	(t_2d_pnt){ray->inter.x, ray->inter.y},
 	color);
 }
