@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/19 14:58:29 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/19 15:42:17 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 # define KEYPRESSMASK (1L<<0)
 # define WIDTH 1920
 # define HEIGHT 1080
-# define BLOCK 20
+# define BLOCK 10
 # define TITLE "WOLF3D"
-# define PLAYER_SIZE 5
+# define PLAYER_SIZE 2
 # define PCNT PLAYER_SIZE / 2
 
 typedef struct	s_2d_pnt
@@ -90,7 +90,7 @@ void			wolf3d_map_draw(t_env *env);
 int				wolf3d_player_init(t_env *env);
 void			wolf3d_player_draw(t_env *env);
 void			wolf3d_player_move(t_env *env, double x, double y);
-void			wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color);
+void			wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color, char draw);
 void			img_putpixel(t_env *env, int x, int y, int color);
 void			img_putline(t_env *par, t_2d_pnt a, t_2d_pnt b,
 														unsigned int color);

@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 11:19:21 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/19 15:00:51 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/19 15:32:27 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static void	exeption(t_env *env, t_2d_pnt a, t_2d_pnt b)
 
 	a = env->ray.o;
 	coef = (b.x - a.x) / (b.y - a.y);
-	while (env->map.map[(int)(a.y / BLOCK)][(int)(a.x / BLOCK)] == '0' || env->map.map[(int)(a.y / BLOCK)][(int)(a.x / BLOCK)] == '#')
+	while (env->map.map[(int)(a.y / BLOCK)][(int)(a.x / BLOCK)] == '0'
+			|| env->map.map[(int)(a.y / BLOCK)][(int)(a.x / BLOCK)] == '#')
 	{
 		(a.y < b.y) ? (a.x += coef) : (a.x -= coef);
 		(a.y < b.y) ? (++a.y) : (--a.y);
@@ -26,18 +27,19 @@ static void	exeption(t_env *env, t_2d_pnt a, t_2d_pnt b)
 	env->ray.inter = a;
 }
 
-void		wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color)
+void		wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color, char draw)
 {
 	t_2d_pnt	a;
 	t_2d_pnt	b;
 	double	coef;
 
 	a = ray->o;
-	b = (t_2d_pnt){(a.x + ray->dir.x * 2000), (a.y + ray->dir.y * 2000)};
+	b = (t_2d_pnt){(a.x + ray->dir.x * 2000000), (a.y + ray->dir.y * 2000000)};
 	coef = (b.y - a.y) / (b.x - a.x);
 	if (-1 <= coef && coef <= 1)
 	{
-		while (env->map.map[(int)(a.y / BLOCK)][(int)(a.x / BLOCK)] == '0' || env->map.map[(int)(a.y / BLOCK)][(int)(a.x / BLOCK)] == '#')
+		while (env->map.map[(int)(a.y / BLOCK)][(int)(a.x / BLOCK)] == '0'
+				|| env->map.map[(int)(a.y / BLOCK)][(int)(a.x / BLOCK)] == '#')
 		{
 			(a.x < b.x) ? (a.y += coef) : (a.y -= coef);
 			(a.x < b.x) ? (++a.x) : (--a.x);
@@ -46,8 +48,9 @@ void		wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color)
 	}
 	else
 		exeption(env, a, b);
-	img_putline(env,
-	(t_2d_pnt){env->player.pos.x + PCNT, env->player.pos.y + PCNT},
-	(t_2d_pnt){ray->inter.x, ray->inter.y},
-	color);
+	if (draw)
+		img_putline(env,
+				(t_2d_pnt){env->player.pos.x + PCNT, env->player.pos.y + PCNT},
+				(t_2d_pnt){ray->inter.x, ray->inter.y},
+				color);
 }
