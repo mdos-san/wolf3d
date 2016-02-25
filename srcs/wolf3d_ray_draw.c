@@ -27,11 +27,11 @@ static void	exeption(t_env *env, t_2d_pnt a, t_2d_pnt b)
 	env->ray.inter = a;
 }
 
-void		wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color, char draw)
+double		wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color, char draw)
 {
 	t_2d_pnt	a;
 	t_2d_pnt	b;
-	double	coef;
+	double		coef;
 
 	a = ray->o;
 	b = (t_2d_pnt){(a.x + ray->dir.x * 2000000), (a.y + ray->dir.y * 2000000)};
@@ -53,4 +53,5 @@ void		wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color, char draw)
 				(t_2d_pnt){env->player.pos.x + PCNT, env->player.pos.y + PCNT},
 				(t_2d_pnt){ray->inter.x, ray->inter.y},
 				color);
+	return (sqrt(pow(ray->o.x - ray->inter.x, 2) + pow(ray->o.y - ray->inter.y, 2)));
 }

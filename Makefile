@@ -35,6 +35,7 @@ TMP_C		=\
 			wolf3d_player_draw.c\
 			wolf3d_player_move.c\
 			wolf3d_ray_draw.c\
+			wolf3d_render.c\
 			img_putpixel.c\
 			img_putline.c\
 			img_clear.c\
