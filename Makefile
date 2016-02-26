@@ -117,6 +117,7 @@ fclean		: clean
 	@echo "Removing all compiled files... \c"
 	@rm -rf $(NAME)
 	@rm -rf libs/libft.a
+	@rm -rf libs/libcolor.a
 	@rm -rf libs/libmlx.a
 	@echo "[ok]"
 
