@@ -12,46 +12,46 @@
 
 #include "wolf3d.h"
 
-static void	exeption(t_env *env, t_2d_pnt a, t_2d_pnt b)
-{
-	double coef;
-
-	a = env->ray.o;
-	coef = (b.x - a.x) / (b.y - a.y);
-	while (env->map.map[(int)(a.y / BLOCK)][(int)(a.x / BLOCK)] == '0'
-			|| env->map.map[(int)(a.y / BLOCK)][(int)(a.x / BLOCK)] == '#')
-	{
-		(a.y < b.y) ? (a.x += coef) : (a.x -= coef);
-		(a.y < b.y) ? (++a.y) : (--a.y);
-	}
-	env->ray.inter = a;
-}
-
-double		wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color, char draw)
+void		wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color,
+																	char draw)
 {
 	t_2d_pnt	a;
-	t_2d_pnt	b;
-	double		coef;
+	char		done;
+	double		m;
+	double		p;
 
+	(void)draw;
+	(void)color;
+	done = 0;
 	a = ray->o;
-	b = (t_2d_pnt){(a.x + ray->dir.x * 2000000), (a.y + ray->dir.y * 2000000)};
-	coef = (b.y - a.y) / (b.x - a.x);
-	if (-1 <= coef && coef <= 1)
+	m = ray->dir.y / ray->dir.x;
+	p = a.y - m * a.x;
+//	ft_putendl("debug1");
+	while (done == 0)
 	{
-		while (env->map.map[(int)(a.y / BLOCK)][(int)(a.x / BLOCK)] == '0'
-				|| env->map.map[(int)(a.y / BLOCK)][(int)(a.x / BLOCK)] == '#')
+//		printf("a.x %lf, a.y %lf\n", a.x, a.y);
+		if (env->map.map[(int)(a.y / BLOCK)][(int)((a.x + ray->dir.x) / BLOCK)] == '1')
+			done = 1;
+		else if (env->map.map[(int)((a.y + ray->dir.y) / BLOCK)][(int)(a.x / BLOCK)] == '1')
+			done = 2;
+		else
 		{
-			(a.x < b.x) ? (a.y += coef) : (a.y -= coef);
-			(a.x < b.x) ? (++a.x) : (--a.x);
+			a.x += ray->dir.x;
+			a.y += ray->dir.y;
 		}
-		ray->inter = a;
 	}
-	else
-		exeption(env, a, b);
-	if (draw)
-		img_putline(env,
-				(t_2d_pnt){env->player.pos.x + PCNT, env->player.pos.y + PCNT},
-				(t_2d_pnt){ray->inter.x, ray->inter.y},
-				color);
-	return (sqrt(pow(ray->o.x - ray->inter.x, 2) + pow(ray->o.y - ray->inter.y, 2)));
+	if (done == 1)
+	{
+		a.x = (a.x < a.x + ray->dir.x) ? (int)a.x + 1 : (int)a.x;
+		a.y = (ray->dir.x != 0) ? m * a.x + p : a.y;
+	}
+	if (done == 2)
+	{
+		a.y = (a.y < a.y + ray->dir.y) ? (int)a.y + 1 : (int)a.y;
+		a.x = (ray->dir.x != 0) ? (a.y - p) / m : a.x;
+	}
+	ray->inter = a;
+	ft_putendl("1");
+	*env->dist = (sqrt(pow(a.x - ray->o.x, 2) + pow(a.y - ray->o.y, 2)));
+	ft_putendl("2");
 }

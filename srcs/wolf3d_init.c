@@ -20,6 +20,7 @@ t_env	*wolf3d_init(int ac, char **av)
 	if (!(env = (t_env*)malloc(sizeof(t_env))))
 		wolf3d_exit(&env, "wolf3d_init: malloc");
 	env->i = 0;
+	env->dist = (double*)malloc(sizeof(double));
 	env->ac = ac;
 	env->av = av;
 	env->ray.o.x = 0;

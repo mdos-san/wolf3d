@@ -18,12 +18,14 @@
 # include <unistd.h>
 # include <mlx.h>
 # include "libft.h"
+# include "libcolor.h"
 # include <stdio.h>
 # define KEYPRESS 2
 # define KEYPRESSMASK (1L<<0)
 # define WIDTH 800
 # define HEIGHT 600
 # define BLOCK 10
+# define SPEED 10
 # define TITLE "WOLF3D"
 # define PLAYER_SIZE 2
 # define PCNT PLAYER_SIZE / 2
@@ -79,6 +81,7 @@ typedef struct	s_env
 	t_2d_ray	ray2;
 	int			player_size;
 	int			i;
+	double		*dist;
 }				t_env;
 
 t_env			*wolf3d_init(int ac, char **av);
@@ -90,8 +93,8 @@ void			wolf3d_map_draw(t_env *env);
 int				wolf3d_player_init(t_env *env);
 void			wolf3d_player_draw(t_env *env);
 void			wolf3d_player_move(t_env *env, double x, double y);
-double			wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color, char draw);
-void			wolf3d_render(t_env *env, int col, double dist);
+void			wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color, char draw);
+void			wolf3d_render(t_env *env, int col, unsigned int color);
 void			img_putpixel(t_env *env, int x, int y, int color);
 void			img_putline(t_env *par, t_2d_pnt a, t_2d_pnt b,
 														unsigned int color);

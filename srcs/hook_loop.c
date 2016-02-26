@@ -15,13 +15,13 @@
 int	hook_loop(t_env *env)
 {
 	(env->player.movement_y == -1) ? wolf3d_player_move
-(env, 0.1 * env->player.view_dir.x, 0.1 * env->player.view_dir.y) : 0;
+(env, SPEED * env->player.view_dir.x, SPEED * env->player.view_dir.y) : 0;
 	(env->player.movement_y == 1) ? wolf3d_player_move
-(env, -0.1 * env->player.view_dir.x, -0.1 * env->player.view_dir.y) : 0;
+(env, -SPEED * env->player.view_dir.x, -SPEED * env->player.view_dir.y) : 0;
 	(env->player.movement_x == 1) ? wolf3d_player_move
-(env, -0.1 * env->player.view_dir.y, 0.1 * env->player.view_dir.x) : 0;
+(env, -SPEED * env->player.view_dir.y, SPEED * env->player.view_dir.x) : 0;
 	(env->player.movement_x == -1) ? wolf3d_player_move
-(env, 0.1 * env->player.view_dir.y, -0.1 * env->player.view_dir.x) : 0;
+(env, SPEED * env->player.view_dir.y, -SPEED * env->player.view_dir.x) : 0;
 	(env->player.view_move == 1) ? vec_rotate_2d(&env->player.view_dir, -2) : 0;
 	(env->player.view_move == -1) ? vec_rotate_2d(&env->player.view_dir, 2) : 0;
 	hook_expose(env);

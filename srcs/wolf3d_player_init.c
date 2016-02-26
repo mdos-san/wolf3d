@@ -21,7 +21,7 @@ int	wolf3d_player_init(t_env *env)
 	env->player.movement_x = 0;
 	env->player.movement_y = 0;
 	env->player.view_dir.x = 0;
-	env->player.view_dir.y = 1 * BLOCK;
+	env->player.view_dir.y = 0.1;
 	env->player.view_move = 0;
 	while (env->map.map[(int)(env->i / BLOCK)])
 	{

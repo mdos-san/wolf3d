@@ -20,15 +20,15 @@ int	hook_expose(t_env *env)
 	i = 0;
 	nbr = WIDTH / 2;
 	img_clear(env);
-	wolf3d_map_draw(env);
-	wolf3d_player_draw(env);
 	env->ray.o = env->player.pos;
 	while (i < nbr)
 	{
 		env->ray.dir = (t_2d_vec){env->player.view_dir.x + (env->player.view_dir.y / nbr * i), env->player.view_dir.y - env->player.view_dir.x / nbr * i};
-		wolf3d_render(env, WIDTH / 2 - i, wolf3d_ray_draw(env, &env->ray, 0xffffff, i % 2));
+		wolf3d_ray_draw(env, &env->ray, 0xffffff, 0);
+		wolf3d_render(env, WIDTH / 2 - i, color_convert(color_get(0, 255 / *env->dist, 0, 0)));
 		env->ray.dir = (t_2d_vec){env->player.view_dir.x - env->player.view_dir.y / nbr * i, env->player.view_dir.y + env->player.view_dir.x / nbr * i};
-		wolf3d_render(env, WIDTH / 2 + i, wolf3d_ray_draw(env, &env->ray, 0xffffff, i % 2));
+		wolf3d_ray_draw(env, &env->ray, 0xffffff, 0);
+		wolf3d_render(env, WIDTH / 2 + i, color_convert(color_get(0, (255 / *env->dist), 0, 0)));
 		++i;
 	}
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);

@@ -16,11 +16,11 @@ OS			= $(shell uname)
 
 COMPILER	= gcc
 FLAGS		= -Wall -Werror -Wextra -g -fsanitize=address -I./includes
-LIBS		= -L./libs -lm -lft -lmlx -framework OpenGL -framework AppKit
+LIBS		= -L./libs -lm -lft -lcolor -lmlx -framework OpenGL -framework AppKit
 MLX_DIR		= minilibx_macos
 
 ifeq ($(OS), Linux)
-LIBS		= -L./libs -lm -lft -lmlx -lX11 -lXext
+LIBS		= -L./libs -lm -lft -lcolor -lmlx -lX11 -lXext
 MLX_DIR		= minilibx_linux
 endif
 
@@ -62,7 +62,7 @@ SRC_O		= $(TMP_O:%=objects/%)
 
 all			: $(NAME)
 
-$(NAME)		: objects libs/libft.a libs/libmlx.a $(SRC_O) $(SRC_H)
+$(NAME)		: objects libs/libft.a libs/libcolor.a libs/libmlx.a $(SRC_O) $(SRC_H)
 	@echo "Creating wolf3d... \c"
 	@$(COMPILER) $(FLAGS) -o $(NAME) $(SRC_O) $(LIBS)
 	@echo "[ok]"
@@ -77,6 +77,13 @@ libs/libft.a	:
 	@make -C libs/libft
 	@mv libs/libft/libft.a libs
 	@make -C libs/libft/ fclean
+	@echo "[ok]"
+
+libs/libcolor.a	:
+	@echo "Making libcolor... \c"
+	@make -C libs/libcolor
+	@mv libs/libcolor/libcolor.a libs
+	@make -C libs/libcolor fclean
 	@echo "[ok]"
 
 libs/libmlx.a	:
