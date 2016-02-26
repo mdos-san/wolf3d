@@ -14,8 +14,8 @@
 
 int		key_press(int keycode, t_env *env)
 {
-	(keycode == 13 || keycode == 119) ? (env->player.movement_y = -1) : 0;
-	(keycode == 1 || keycode == 115) ? (env->player.movement_y = 1) : 0;
+	(keycode == 13 || keycode == 119 || keycode == 65362) ? (env->player.movement_y = -1) : 0;
+	(keycode == 1 || keycode == 115 || keycode == 65364) ? (env->player.movement_y = 1) : 0;
 	(keycode == 0 || keycode == 97) ? (env->player.movement_x = -1) : 0;
 	(keycode == 2 || keycode == 100) ? (env->player.movement_x = 1) : 0;
 	(keycode == 123 || keycode == 65361) ? (env->player.view_move = 1) : 0;
@@ -28,8 +28,8 @@ int		key_press(int keycode, t_env *env)
 int		key_rl(int keycode, t_env *env)
 {
 	ft_putnbrl(keycode);
-	(keycode == 13 || keycode == 119) ? (env->player.movement_y = 0) : 0;
-	(keycode == 1 || keycode == 115) ? (env->player.movement_y = 0) : 0;
+	(keycode == 13 || keycode == 119 || keycode == 65362) ? (env->player.movement_y = 0) : 0;
+	(keycode == 1 || keycode == 115 || keycode == 65364) ? (env->player.movement_y = 0) : 0;
 	(keycode == 0 || keycode == 97) ? (env->player.movement_x = 0) : 0;
 	(keycode == 2 || keycode == 100) ? (env->player.movement_x = 0) : 0;
 	(keycode == 123 || keycode == 65361) ? (env->player.view_move = 0) : 0;
