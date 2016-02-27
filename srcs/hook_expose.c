@@ -16,6 +16,7 @@ int	hook_expose(t_env *env)
 {
 	int	i;
 	int	nbr;
+	double	color;
 
 	i = 0;
 	nbr = WIDTH / 2;
@@ -25,10 +26,13 @@ int	hook_expose(t_env *env)
 	{
 		env->ray.dir = (t_2d_vec){env->player.view_dir.x + (env->player.view_dir.y / nbr * i), env->player.view_dir.y - env->player.view_dir.x / nbr * i};
 		wolf3d_ray_draw(env, &env->ray, 0xffffff, 0);
-		wolf3d_render(env, WIDTH / 2 - i, color_convert(color_get(0, 255 / *env->dist * 6 , 0, 0)));
+		color = (255 / *env->dist > 255) ? 255 : 255 / *env->dist;
+		wolf3d_render(env, WIDTH / 2 - i, color_convert(color_get(0, color, 0, 0)));
 		env->ray.dir = (t_2d_vec){env->player.view_dir.x - env->player.view_dir.y / nbr * i, env->player.view_dir.y + env->player.view_dir.x / nbr * i};
 		wolf3d_ray_draw(env, &env->ray, 0xffffff, 0);
-		wolf3d_render(env, WIDTH / 2 + i, color_convert(color_get(0, (255 / *env->dist * 6), 0, 0)));
+		color = (255 / *env->dist > 255) ? 255 : 255 / *env->dist;
+		wolf3d_render(env, WIDTH / 2 + i, color_convert(color_get(0, color, 0, 0)));
+
 		++i;
 	}
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
