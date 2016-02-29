@@ -27,6 +27,7 @@
 # define HEIGHT 480
 # define BLOCK 10
 # define SPEED 10
+# define LUM 10
 # define TITLE "WOLF3D"
 # define PLAYER_SIZE 2
 # define PCNT PLAYER_SIZE / 2
