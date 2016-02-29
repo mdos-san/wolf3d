@@ -14,6 +14,8 @@
 
 void	wolf3d_player_move(t_env *env, double x, double y)
 {
+	clock_t	last_frame;
+
 	if ((env->map.map[(int)((env->player.pos.y + y) / BLOCK)]
 					[(int)((env->player.pos.x + x) / BLOCK)] == '0' ||
 		env->map.map[(int)((env->player.pos.y + y) / BLOCK)]
@@ -31,7 +33,9 @@ void	wolf3d_player_move(t_env *env, double x, double y)
 		env->map.map[(int)((env->player.pos.y + PLAYER_SIZE + y) / BLOCK)]
 					[(int)((env->player.pos.x + x) / BLOCK)] == '#' ))
 	{
-		env->player.pos.x += x;
-		env->player.pos.y += y;
+		last_frame = clock() - *env->time;
+		last_frame /= 10;
+		env->player.pos.x += x * last_frame;
+		env->player.pos.y += y * last_frame;
 	}
 }

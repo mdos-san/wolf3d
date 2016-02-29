@@ -17,13 +17,14 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <mlx.h>
+# include <time.h>
 # include "libft.h"
 # include "libcolor.h"
 # include <stdio.h>
 # define KEYPRESS 2
 # define KEYPRESSMASK (1L<<0)
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 680
+# define HEIGHT 480
 # define BLOCK 10
 # define SPEED 10
 # define TITLE "WOLF3D"
@@ -82,6 +83,7 @@ typedef struct	s_env
 	int			player_size;
 	int			i;
 	double		*dist;
+	clock_t		*time;
 }				t_env;
 
 t_env			*wolf3d_init(int ac, char **av);

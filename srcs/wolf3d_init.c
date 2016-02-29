@@ -21,6 +21,8 @@ t_env	*wolf3d_init(int ac, char **av)
 		wolf3d_exit(&env, "wolf3d_init: malloc");
 	env->i = 0;
 	env->dist = (double*)malloc(sizeof(double));
+	env->time = (clock_t*)malloc(sizeof(clock_t));
+	*env->time = clock();
 	env->ac = ac;
 	env->av = av;
 	env->ray.o.x = 0;

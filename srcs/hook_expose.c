@@ -35,6 +35,8 @@ int	hook_expose(t_env *env)
 
 		++i;
 	}
+	*env->time = clock() - *env->time;
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
+	*env->time = clock();
 	return (1);
 }
