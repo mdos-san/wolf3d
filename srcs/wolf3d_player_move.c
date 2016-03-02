@@ -6,7 +6,7 @@
 /*   By: ahamouda <ahamouda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 16:07:43 by ahamouda          #+#    #+#             */
-/*   Updated: 2016/03/02 14:43:46 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/02 17:56:19 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,13 @@
 
 void	wolf3d_player_move(t_env *env, double x, double y)
 {
-	if ((env->map.map[(int)((env->player.pos.y + y) / BLOCK)]
-					[(int)((env->player.pos.x + x) / BLOCK)] == '0' ||
-		env->map.map[(int)((env->player.pos.y + y) / BLOCK)]
-					[(int)((env->player.pos.x + x) / BLOCK)] == '#' ) &&
-	(env->map.map[(int)((env->player.pos.y + PLAYER_SIZE + y) / BLOCK)]
-					[(int)((env->player.pos.x + PLAYER_SIZE + x) / BLOCK)] == '0' ||
-		env->map.map[(int)((env->player.pos.y + PLAYER_SIZE + y) / BLOCK)]
-					[(int)((env->player.pos.x + PLAYER_SIZE + x) / BLOCK)] == '#' ) &&
-	(env->map.map[(int)((env->player.pos.y + y) / BLOCK)]
-					[(int)((env->player.pos.x + PLAYER_SIZE + x) / BLOCK)] == '0' ||
-		env->map.map[(int)((env->player.pos.y + y) / BLOCK)]
-					[(int)((env->player.pos.x + PLAYER_SIZE + x) / BLOCK)] == '#' ) &&
-		(env->map.map[(int)((env->player.pos.y + PLAYER_SIZE + y) / BLOCK)]
-					[(int)((env->player.pos.x + x) / BLOCK)] == '0' ||
-		env->map.map[(int)((env->player.pos.y + PLAYER_SIZE + y) / BLOCK)]
-					[(int)((env->player.pos.x + x) / BLOCK)] == '#' ))
-	{
+	double	new_x;
+	double	new_y;
+
+	new_x = env->player.pos.x + x;
+	new_y = env->player.pos.y + y;
+	if (!wolf3d_map_is_wall(env, (t_2d_pnt){new_x, env->player.pos.y}))
 		env->player.pos.x += x;
+	if (!wolf3d_map_is_wall(env, (t_2d_pnt){env->player.pos.x, new_y}))
 		env->player.pos.y += y;
-	}
 }
