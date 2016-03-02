@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/19 15:42:17 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/02 14:49:20 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <mlx.h>
-# include <time.h>
 # include "libft.h"
 # include "libcolor.h"
 # include <stdio.h>
@@ -84,7 +83,6 @@ typedef struct	s_env
 	int			player_size;
 	int			i;
 	double		*dist;
-	clock_t		*time;
 }				t_env;
 
 t_env			*wolf3d_init(int ac, char **av);

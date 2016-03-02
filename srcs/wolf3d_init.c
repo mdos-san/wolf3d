@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:03:38 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/19 14:53:59 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/02 14:44:27 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ t_env	*wolf3d_init(int ac, char **av)
 		wolf3d_exit(&env, "wolf3d_init: malloc");
 	env->i = 0;
 	env->dist = (double*)malloc(sizeof(double));
-	env->time = (clock_t*)malloc(sizeof(clock_t));
-	*env->time = clock();
 	env->ac = ac;
 	env->av = av;
 	env->ray.o.x = 0;
