@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:50:05 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/02 15:50:23 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/02 16:07:55 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	hook_expose(t_env *env)
 	while (i < nbr)
 	{
 		env->ray.dir = (t_2d_vec){env->player.view_dir.x + (env->player.view_dir.y / nbr * i), env->player.view_dir.y - env->player.view_dir.x / nbr * i};
-		wolf3d_ray_draw(env, &env->ray, 0xffffff, 1);
+		wolf3d_ray_draw(env, &env->ray, 0xffffff, 0);
 		color = (255 / *env->dist * LUM > 255) ? 255 : 255 / *env->dist * LUM;
-		wolf3d_render(env, WIDTH / 2 - i, color_convert(color_get(0, color, 0, 0)));
+		wolf3d_render(env, WIDTH / 2 - i, color_convert(color_get(0, 0, color, 0)));
 		env->ray.dir = (t_2d_vec){env->player.view_dir.x - env->player.view_dir.y / nbr * i, env->player.view_dir.y + env->player.view_dir.x / nbr * i};
-		wolf3d_ray_draw(env, &env->ray, 0xffffff, 1);
+		wolf3d_ray_draw(env, &env->ray, 0xffffff, 0);
 		color = (255 / *env->dist * LUM > 255) ? 255 : 255 / *env->dist * LUM;
-		wolf3d_render(env, WIDTH / 2 + i, color_convert(color_get(0, color, 0, 0)));
+		wolf3d_render(env, WIDTH / 2 + i, color_convert(color_get(0, 0, color, 0)));
 		++i;
 	}
 	
