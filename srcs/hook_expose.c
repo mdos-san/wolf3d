@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:50:05 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/02 14:52:08 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/02 15:50:23 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	hook_expose(t_env *env)
 	nbr = WIDTH / 2;
 	img_clear(env);
 	env->ray.o = env->player.pos;
+//	wolf3d_map_draw(env);
 	while (i < nbr)
 	{
 		env->ray.dir = (t_2d_vec){env->player.view_dir.x + (env->player.view_dir.y / nbr * i), env->player.view_dir.y - env->player.view_dir.x / nbr * i};
@@ -32,7 +33,6 @@ int	hook_expose(t_env *env)
 		wolf3d_ray_draw(env, &env->ray, 0xffffff, 1);
 		color = (255 / *env->dist * LUM > 255) ? 255 : 255 / *env->dist * LUM;
 		wolf3d_render(env, WIDTH / 2 + i, color_convert(color_get(0, color, 0, 0)));
-
 		++i;
 	}
 	
