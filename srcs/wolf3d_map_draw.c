@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:20:19 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/18 15:29:28 by ahamouda         ###   ########.fr       */
+/*   Updated: 2016/03/07 10:48:28 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,7 @@ void		wolf3d_map_draw(t_env *env)
 	{
 		while (env->map.map[i][j])
 		{
-			if (env->map.map[i][j] == '1')
-				draw_block(env, j, i, 0xFF0000);
-			else if (env->map.map[i][j] == '#')
-				draw_block(env, j, i, 0x0000ff);
-			else
-				draw_block(env, j, i, 0x00FF00);
+			draw_block(env, j, i, color_convert(env->map.color[i][j]));
 			++j;
 		}
 		j = 0;
