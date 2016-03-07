@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/07 04:34:13 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/07 05:22:44 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <stdio.h>
 # define KEYPRESS 2
 # define KEYPRESSMASK (1L<<0)
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 800
+# define HEIGHT 600
 # define BLOCK 10
 # define SPEED 10
 # define SPEED_CAM 2
