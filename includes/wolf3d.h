@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/02 17:48:49 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/07 00:51:53 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct	s_player
 
 typedef struct	s_map
 {
+	t_color	**color;
 	char	**map;
 }				t_map;
 
@@ -83,6 +84,7 @@ typedef struct	s_env
 	int			player_size;
 	int			i;
 	double		*dist;
+	t_color		*color;
 }				t_env;
 
 t_env			*wolf3d_init(int ac, char **av);

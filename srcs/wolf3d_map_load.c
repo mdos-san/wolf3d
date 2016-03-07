@@ -6,19 +6,42 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:17:34 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/18 15:26:50 by ahamouda         ###   ########.fr       */
+/*   Updated: 2016/03/07 00:50:34 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static void	alloc_map(t_env *env, char **line)
+static void	map_get_color(t_env *env, char *line, int j)
+{
+	int	i;
+	int	lenght;
+
+	i = 0;
+	lenght = ft_strlen(line);
+	while (i < lenght)
+	{
+		if (line[i] == '1')
+			env->map.color[j][i] = color_get(255, 0, 0, 0);
+		else
+			env->map.color[j][i] = color_get(0, 0, 255, 0);
+		++i;
+	}
+}
+
+static void	alloc_map(t_env *env, char **line, int j)
 {
 	if ((env->map.map[env->i] = ft_strdup(*line)) == NULL)
 	{
 		(*line != NULL) ? free(*line) : 0;
 		wolf3d_exit(&env, "alloc_map: ft_strdup have failed! (map)");
 	}
+	if (!(env->map.color[j] = (t_color*)malloc(sizeof(t_color) * ft_strlen(*line))))
+	{
+		(*line != NULL) ? free(*line) : 0;
+		wolf3d_exit(&env, "alloc_map: ft_strdup have failed! (map)");
+	}
+	map_get_color(env, *line, j);
 	(*line != NULL) ? free(*line) : 0;
 	++env->i;
 }
@@ -45,17 +68,24 @@ void		wolf3d_map_load(t_env *env)
 	int		ret;
 	int		nb_line;
 	char	*line;
+	int		j;
 
+	j = 0;
 	env->i = 0;
 	line = NULL;
 	nb_line = get_nb_line(env);
 	if (!(env->map.map = (char**)malloc(sizeof(char*) * (nb_line + 1))))
 		wolf3d_exit(&env, "wolf3d_map_load: malloc (map)");
+	if (!(env->map.color = (t_color**)malloc(sizeof(t_color*) * (nb_line))))
+		wolf3d_exit(&env, "wolf3d_map_load: malloc (map)");
 	env->map.map[nb_line] = NULL;
 	if ((env->fd = open(env->av[1], O_RDWR)) == -1)
 		wolf3d_exit(&env, "wolf3d_map_load: open");
 	while ((ret = get_next_line(env->fd, &line)) > 0)
-		alloc_map(env, &line);
+	{
+		alloc_map(env, &line, j);
+		++j;
+	}
 	(ret == -1) ? wolf3d_exit(&env, "wolf3d_map_load: gnl") : 0;
 	((close(env->fd)) == -1) ? wolf3d_exit(&env, "wolf3d_map_load: close") : 0;
 	ft_putendl("Map:");
