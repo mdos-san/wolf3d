@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:45:46 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/19 10:38:36 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/07 04:24:45 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	hook_loop(t_env *env)
 (env, -SPEED * env->player.view_dir.y, SPEED * env->player.view_dir.x) : 0;
 	(env->player.movement_x == -1) ? wolf3d_player_move
 (env, SPEED * env->player.view_dir.y, -SPEED * env->player.view_dir.x) : 0;
-	(env->player.view_move == 1) ? vec_rotate_2d(&env->player.view_dir, -2) : 0;
-	(env->player.view_move == -1) ? vec_rotate_2d(&env->player.view_dir, 2) : 0;
+	(env->player.view_move == 1) ? vec_rotate_2d(&env->player.view_dir, -2 * SPEED_CAM) : 0;
+	(env->player.view_move == -1) ? vec_rotate_2d(&env->player.view_dir, 2 * SPEED_CAM) : 0;
 	hook_expose(env);
 	return (1);
 }

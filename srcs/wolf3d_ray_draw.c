@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 11:19:21 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/07 00:58:01 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/07 03:18:56 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color,
 		a.y += ray->dir.y;
 	}
 	*env->color = env->map.color[(int)(a.y / BLOCK)][(int)(a.x / BLOCK)];
-	while (i <= 42)
+	while (i <= 200)
 	{
 		if (ft_isdigit(env->map.map[(int)(a.y / BLOCK)][(int)(a.x / BLOCK)]))
 		{
