@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/07 05:22:44 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/07 06:17:21 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define BLOCK 10
 # define SPEED 10
 # define SPEED_CAM 2
-# define LUM 20
+# define LUM 10
 # define TITLE "WOLF3D"
 # define PLAYER_SIZE 2
 # define PCNT PLAYER_SIZE / 2
@@ -101,9 +101,11 @@ void			wolf3d_player_move(t_env *env, double x, double y);
 void			wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color, char draw);
 void			wolf3d_render(t_env *env, int col, unsigned int color);
 void			img_putpixel(t_env *env, int x, int y, int color);
+void			img_fill_down(t_env *env, t_color color);
 void			img_putline(t_env *par, t_2d_pnt a, t_2d_pnt b,
 														unsigned int color);
 void			img_clear(t_env *env);
+void			img_fill_up(t_env *env, double color);
 void			event_key(t_env *env);
 int				hook_loop(t_env *env);
 int				hook_expose(t_env *env);

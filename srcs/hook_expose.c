@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:50:05 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/07 04:17:10 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/07 06:23:58 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	hook_expose(t_env *env)
 	nbr = WIDTH / 2;
 	img_clear(env);
 	env->ray.o = env->player.pos;
-	while (i < nbr)
+	img_fill_up(env, color_convert(color_get(0, 100, 255, 0)));
+	img_fill_down(env, color_get(100, 100, 100, 0));
+	while (i < nbr + 1)
 	{
 		new_x = env->player.view_dir.x / nbr * i;
 		new_y = env->player.view_dir.y / nbr * i;
 		env->ray.dir = (t_2d_vec){env->player.view_dir.x + new_y, env->player.view_dir.y - new_x};
 		wolf3d_ray_draw(env, &env->ray, 0xffffff, 0);
-//		*env->dist *= cos((env->ray.dir.x * env->player.view_dir.x + env->ray.dir.y * env->player.view_dir.y)
-//		/ ((sqrt(pow(env->ray.dir.x, 2) + pow(env->ray.dir.y, 2))) * (sqrt(pow(env->player.view_dir.x, 2) + pow(env->player.view_dir.y, 2)))));
 		*env->dist *= (env->ray.dir.x * env->player.view_dir.x + env->ray.dir.y * env->player.view_dir.y)
 		/ ((sqrt(pow(env->ray.dir.x, 2) + pow(env->ray.dir.y, 2))) * (sqrt(pow(env->player.view_dir.x, 2) + pow(env->player.view_dir.y, 2))));
 		env->color->r = (env->color->r / *env->dist * LUM > 255) ? 255 : env->color->r / *env->dist * LUM;
