@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 05:27:07 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/07 06:15:52 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/07 08:09:26 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	img_fill_up(t_env *env, double color)
 		++y;
 	}
 }
+
 void	img_fill_down(t_env *env, t_color color)
 {
 	int		x;

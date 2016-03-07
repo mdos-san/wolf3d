@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:17:34 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/07 01:25:36 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/07 08:08:15 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static void	map_get_color(t_env *env, char *line, int j)
 	{
 		if (line[i] == '1')
 			env->map.color[j][i] = color_get(255, 0, 0, 0);
-		else if(line[i] == '2')
+		else if (line[i] == '2')
 			env->map.color[j][i] = color_get(0, 255, 0, 0);
-		else if(line[i] == '3')
+		else if (line[i] == '3')
 			env->map.color[j][i] = color_get(0, 0, 255, 0);
-		else if(line[i] == '4')
+		else if (line[i] == '4')
 			env->map.color[j][i] = color_get(255, 255, 0, 0);
 		else
 			env->map.color[j][i] = color_get(255, 255, 255, 0);
@@ -42,7 +42,8 @@ static void	alloc_map(t_env *env, char **line, int j)
 		(*line != NULL) ? free(*line) : 0;
 		wolf3d_exit(&env, "alloc_map: ft_strdup have failed! (map)");
 	}
-	if (!(env->map.color[j] = (t_color*)malloc(sizeof(t_color) * ft_strlen(*line))))
+	if (!(env->map.color[j] =
+		(t_color*)malloc(sizeof(t_color) * ft_strlen(*line))))
 	{
 		(*line != NULL) ? free(*line) : 0;
 		wolf3d_exit(&env, "alloc_map: ft_strdup have failed! (map)");

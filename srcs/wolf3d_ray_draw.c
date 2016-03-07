@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 11:19:21 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/07 03:18:56 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/07 08:07:26 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ void		wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color,
 	ray->inter = a;
 	if (draw)
 		img_putline(env, ray->o, ray->inter, color);
-	*env->dist = (sqrt(pow(ray->inter.x - ray->o.x, 2) + pow(ray->inter.y - ray->o.y, 2)));
+	*env->dist = (sqrt(pow(a.x - ray->o.x, 2) + pow(a.y - ray->o.y, 2)));
 }
