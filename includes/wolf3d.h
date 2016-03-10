@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/07 08:12:42 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/10 07:20:38 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define WIDTH 800
 # define HEIGHT 600
 # define BLOCK 10
-# define SPEED 10
+# define SPEED 0.1
 # define SPEED_CAM 2
 # define LUM 10
 # define TITLE "WOLF3D"
