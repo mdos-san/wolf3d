@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:50:05 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/10 07:07:07 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/10 14:06:39 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,7 @@ int	hook_expose(t_env *env)
 		+ env->ray.dir.y * env->player.view_dir.y)
 		/ ((sqrt(pow(env->ray.dir.x, 2) + pow(env->ray.dir.y, 2))) *
 		sqrt(pow(env->player.view_dir.x, 2) + pow(env->player.view_dir.y, 2)));
-		env->color->r = (env->color->r / *env->dist * LUM > 255)
-			? 255 : env->color->r / *env->dist * LUM;
-		env->color->g = (env->color->g / *env->dist * LUM > 255)
-			? 255 : env->color->g / *env->dist * LUM;
-		env->color->b = (env->color->b / *env->dist * LUM > 255)
-			? 255 : env->color->b / *env->dist * LUM;
-//		wolf3d_render(env, WIDTH / 2 - i, color_convert(*env->color));
+		wolf3d_render(env, WIDTH / 2 - i, color_convert(*env->color));
 		env->ray.dir = (t_2d_vec)
 			{env->player.view_dir.x - new_y, env->player.view_dir.y + new_x};
 		wolf3d_ray_draw(env, &env->ray, 0xffffff, 1);
@@ -52,13 +46,7 @@ int	hook_expose(t_env *env)
 				/ (sqrt(pow(env->ray.dir.x, 2) + pow(env->ray.dir.y, 2))
 				* sqrt(pow(env->player.view_dir.x, 2)
 				+ pow(env->player.view_dir.y, 2)));
-		env->color->r = (env->color->r / *env->dist * LUM > 255)
-			? 255 : env->color->r / *env->dist * LUM;
-		env->color->g = (env->color->g / *env->dist * LUM > 255)
-			? 255 : env->color->g / *env->dist * LUM;
-		env->color->b = (env->color->b / *env->dist * LUM > 255)
-			? 255 : env->color->b / *env->dist * LUM;
-//		wolf3d_render(env, WIDTH / 2 + i, color_convert(*env->color));
+		wolf3d_render(env, WIDTH / 2 + i, color_convert(*env->color));
 		++i;
 	}
 	wolf3d_player_draw(env);
