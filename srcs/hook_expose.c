@@ -25,7 +25,6 @@ int	hook_expose(t_env *env)
 	env->ray.o = env->player.pos;
 	img_fill_up(env, color_convert(color_get(0, 100, 255, 0)));
 	img_fill_down(env, color_get(100, 100, 100, 0));
-	wolf3d_map_draw(env);
 	while (i < nbr + 1)
 	{
 		new_x = env->player.view_dir.x / nbr * i;
@@ -37,6 +36,9 @@ int	hook_expose(t_env *env)
 		+ env->ray.dir.y * env->player.view_dir.y)
 		/ ((sqrt(pow(env->ray.dir.x, 2) + pow(env->ray.dir.y, 2))) *
 		sqrt(pow(env->player.view_dir.x, 2) + pow(env->player.view_dir.y, 2)));
+		env->color->r = ((double)env->color->r / *env->dist * LUM > 255) ? 255 : (double)env->color->r / *env->dist * LUM;
+		env->color->g = ((double)env->color->g / *env->dist * LUM > 255) ? 255 : (double)env->color->g / *env->dist * LUM;
+		env->color->b = ((double)env->color->b / *env->dist * LUM > 255) ? 255 : (double)env->color->b / *env->dist * LUM;
 		wolf3d_render(env, WIDTH / 2 - i, color_convert(*env->color));
 		env->ray.dir = (t_2d_vec)
 			{env->player.view_dir.x - new_y, env->player.view_dir.y + new_x};
@@ -46,9 +48,13 @@ int	hook_expose(t_env *env)
 				/ (sqrt(pow(env->ray.dir.x, 2) + pow(env->ray.dir.y, 2))
 				* sqrt(pow(env->player.view_dir.x, 2)
 				+ pow(env->player.view_dir.y, 2)));
+		env->color->r = ((double)env->color->r / *env->dist * LUM > 255) ? 255 : (double)env->color->r / *env->dist * LUM;
+		env->color->g = ((double)env->color->g / *env->dist * LUM > 255) ? 255 : (double)env->color->g / *env->dist * LUM;
+		env->color->b = ((double)env->color->b / *env->dist * LUM > 255) ? 255 : (double)env->color->b / *env->dist * LUM;
 		wolf3d_render(env, WIDTH / 2 + i, color_convert(*env->color));
 		++i;
 	}
+	wolf3d_map_draw(env);
 	wolf3d_player_draw(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	return (1);
