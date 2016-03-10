@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/10 07:20:38 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/10 07:50:08 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct	s_map
 {
 	t_color	**color;
 	char	**map;
+	int		size_y;
 }				t_map;
 
 typedef struct	s_env
