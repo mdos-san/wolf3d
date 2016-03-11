@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/11 09:29:21 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/11 11:10:19 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define BLOCK 10
 # define SPEED 0.1
 # define SPEED_CAM 2
-# define LUM 10
+# define LUM 20
 # define TITLE "WOLF3D"
 # define PLAYER_SIZE 2
 # define PCNT PLAYER_SIZE / 2
@@ -87,7 +87,11 @@ typedef struct	s_env
 	int			i;
 	double		*dist;
 	t_color		*color;
+	t_color		prev_right;
+	t_color		prev_left;
+	char		part_screen;
 	char		ev_draw_map;
+	char		ev_color;
 }				t_env;
 
 t_env			*wolf3d_init(int ac, char **av);

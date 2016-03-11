@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:50:05 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/11 09:30:52 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/11 11:10:05 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int	hook_expose(t_env *env)
 		new_y = env->player.view_dir.y / nbr * i;
 		env->ray.dir = (t_2d_vec)
 			{env->player.view_dir.x + new_y, env->player.view_dir.y - new_x};
+		env->part_screen = 0;
 		wolf3d_ray_draw(env, &env->ray, 0xffffff, 0);
+		env->prev_left = *env->color;
 		*env->dist *= (env->ray.dir.x * env->player.view_dir.x
 		+ env->ray.dir.y * env->player.view_dir.y)
 		/ ((sqrt(pow(env->ray.dir.x, 2) + pow(env->ray.dir.y, 2))) *
@@ -42,7 +44,9 @@ int	hook_expose(t_env *env)
 		wolf3d_render(env, WIDTH / 2 - i, color_convert(*env->color));
 		env->ray.dir = (t_2d_vec)
 			{env->player.view_dir.x - new_y, env->player.view_dir.y + new_x};
+		env->part_screen = 1;
 		wolf3d_ray_draw(env, &env->ray, 0xffffff, 0);
+		env->prev_right = *env->color;
 		*env->dist *= (env->ray.dir.x * env->player.view_dir.x
 				+ env->ray.dir.y * env->player.view_dir.y)
 				/ (sqrt(pow(env->ray.dir.x, 2) + pow(env->ray.dir.y, 2))

@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:03:38 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/11 09:29:23 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/11 10:58:13 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_env	*wolf3d_init(int ac, char **av)
 	env->ray.inter.x = 0;
 	env->ray.inter.x = 0;
 	env->ev_draw_map = 0;
+	env->ev_color = 0;
 	wolf3d_map_load(env);
 	wolf3d_player_init(env);
 	if (((env)->mlx = mlx_init()) == NULL)
