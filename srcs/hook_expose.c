@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:50:05 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/10 14:06:39 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/11 09:30:52 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	hook_expose(t_env *env)
 		new_y = env->player.view_dir.y / nbr * i;
 		env->ray.dir = (t_2d_vec)
 			{env->player.view_dir.x + new_y, env->player.view_dir.y - new_x};
-		wolf3d_ray_draw(env, &env->ray, 0xffffff, 1);
+		wolf3d_ray_draw(env, &env->ray, 0xffffff, 0);
 		*env->dist *= (env->ray.dir.x * env->player.view_dir.x
 		+ env->ray.dir.y * env->player.view_dir.y)
 		/ ((sqrt(pow(env->ray.dir.x, 2) + pow(env->ray.dir.y, 2))) *
@@ -42,7 +42,7 @@ int	hook_expose(t_env *env)
 		wolf3d_render(env, WIDTH / 2 - i, color_convert(*env->color));
 		env->ray.dir = (t_2d_vec)
 			{env->player.view_dir.x - new_y, env->player.view_dir.y + new_x};
-		wolf3d_ray_draw(env, &env->ray, 0xffffff, 1);
+		wolf3d_ray_draw(env, &env->ray, 0xffffff, 0);
 		*env->dist *= (env->ray.dir.x * env->player.view_dir.x
 				+ env->ray.dir.y * env->player.view_dir.y)
 				/ (sqrt(pow(env->ray.dir.x, 2) + pow(env->ray.dir.y, 2))
@@ -54,8 +54,8 @@ int	hook_expose(t_env *env)
 		wolf3d_render(env, WIDTH / 2 + i, color_convert(*env->color));
 		++i;
 	}
-	wolf3d_map_draw(env);
-	wolf3d_player_draw(env);
+	(env->ev_draw_map == 1) ? wolf3d_map_draw(env) : 0;
+	(env->ev_draw_map == 1) ? wolf3d_player_draw(env) : 0;
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	return (1);
 }

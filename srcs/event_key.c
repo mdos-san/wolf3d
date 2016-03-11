@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:31:19 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/07 08:03:09 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/11 09:33:46 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int		key_rl(int keycode, t_env *env)
 	(keycode == 2 || keycode == 100) ? (env->player.movement_x = 0) : 0;
 	(keycode == 123 || keycode == 65361) ? (env->player.view_move = 0) : 0;
 	(keycode == 124 || keycode == 65363) ? (env->player.view_move = 0) : 0;
+	if (keycode == 46)
+		env->ev_draw_map = (env->ev_draw_map == 0) ? 1 : 0;
 	return (1);
 }
 

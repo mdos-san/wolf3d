@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 11:19:21 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/10 14:06:23 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/11 10:01:06 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 **
 */
 
-static	void	get_dist_x(t_env *env, t_2d_ray *ray, double *distx, double m, double p)
+static void	get_dist_x(t_env *env, t_2d_ray *ray, double *distx, double m, double p)
 {
 	t_2d_pnt	cursor;
 	char		error;
@@ -63,7 +63,7 @@ static	void	get_dist_x(t_env *env, t_2d_ray *ray, double *distx, double m, doubl
 		*distx = -1;
 }
 
-static	void	get_dist_y(t_env *env, t_2d_ray *ray, double *disty, double m, double p)
+static void	get_dist_y(t_env *env, t_2d_ray *ray, double *disty, double m, double p)
 {
 	t_2d_pnt	cursor;
 	char		error;
@@ -103,6 +103,42 @@ static	void	get_dist_y(t_env *env, t_2d_ray *ray, double *disty, double m, doubl
 		*disty = -1;
 }
 
+static void	exeption_x(t_env *env,  t_2d_ray *ray)
+{
+	t_2d_pnt	cursor;
+
+	cursor = ray->o;
+	if (ray->dir.y > 0)
+		cursor.y = (int)((int)(cursor.y / BLOCK) * BLOCK) + BLOCK;
+	else
+		cursor.y = (int)((int)(cursor.y / BLOCK) * BLOCK) - 0.00001;
+	while (!wolf3d_map_is_wall(env, cursor))
+		cursor.y += (ray->dir.y > 0) ? BLOCK : -BLOCK;
+	*env->dist = sqrt(pow(ray->o.x - cursor.x, 2) + pow(ray->o.y - cursor.y, 2));
+	if (ray->dir.y > 0)
+		*env->color = color_get(0, 0, 255, 0);
+	else
+		*env->color = color_get(255, 255, 0, 0);
+}
+
+static void	exeption_y(t_env *env,  t_2d_ray *ray)
+{
+	t_2d_pnt	cursor;
+
+	cursor = ray->o;
+	if (ray->dir.x > 0)
+		cursor.x = (int)((int)(cursor.x / BLOCK) * BLOCK) + BLOCK;
+	else
+		cursor.x = (int)((int)(cursor.x / BLOCK) * BLOCK) - 0.00001;
+	while (!wolf3d_map_is_wall(env, cursor))
+		cursor.x += (ray->dir.x > 0) ? BLOCK : -BLOCK;
+	*env->dist = sqrt(pow(ray->o.x - cursor.x, 2) + pow(ray->o.y - cursor.y, 2));
+	if (ray->dir.x > 0)
+		*env->color = color_get(255, 0, 0, 0);
+	else
+		*env->color = color_get(0, 255, 0, 0);
+}
+
 void			wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color,
 		char draw)
 {
@@ -118,12 +154,11 @@ void			wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color,
 		p = ray->o.y - m * ray->o.x;
 		get_dist_x(env, ray, &distx, m, p);
 		get_dist_y(env, ray, &disty, m, p);
-		img_putline(env, ray->o, ray->inter, 0xff00ff);
+		if (draw == 1)
+			img_putline(env, ray->o, ray->inter, color);
 	}
-	else
-		*env->dist = 1;
-	(void)env;
-	(void)ray;
-	(void)draw;
-	(void)color;
+	else if (ray->dir.x == 0)
+		exeption_x(env, ray);
+	else if (ray->dir.y == 0)
+		exeption_y(env, ray);
 }
