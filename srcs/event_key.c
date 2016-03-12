@@ -39,9 +39,9 @@ int		key_rl(int keycode, t_env *env)
 	(keycode == 2 || keycode == 100) ? (env->player.movement_x = 0) : 0;
 	(keycode == 123 || keycode == 65361) ? (env->player.view_move = 0) : 0;
 	(keycode == 124 || keycode == 65363) ? (env->player.view_move = 0) : 0;
-	if (keycode == 46)
+	if (keycode == 46 || keycode == 109)
 		env->ev_draw_map = (env->ev_draw_map == 0) ? 1 : 0;
-	if (keycode == 122)
+	if (keycode == 122 || keycode == 65470)
 		env->ev_color = (env->ev_color == 0) ? 1 : 0;
 	return (1);
 }
