@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:50:05 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/11 11:10:05 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/15 13:22:19 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,12 @@ int	hook_expose(t_env *env)
 		+ env->ray.dir.y * env->player.view_dir.y)
 		/ ((sqrt(pow(env->ray.dir.x, 2) + pow(env->ray.dir.y, 2))) *
 		sqrt(pow(env->player.view_dir.x, 2) + pow(env->player.view_dir.y, 2)));
-		env->color->r = ((double)env->color->r / *env->dist * LUM > 255) ? 255 : (double)env->color->r / *env->dist * LUM;
-		env->color->g = ((double)env->color->g / *env->dist * LUM > 255) ? 255 : (double)env->color->g / *env->dist * LUM;
-		env->color->b = ((double)env->color->b / *env->dist * LUM > 255) ? 255 : (double)env->color->b / *env->dist * LUM;
+		env->color->r = ((double)env->color->r / *env->dist * LUM > 255)
+			? 255 : (double)env->color->r / *env->dist * LUM;
+		env->color->g = ((double)env->color->g / *env->dist * LUM > 255)
+			? 255 : (double)env->color->g / *env->dist * LUM;
+		env->color->b = ((double)env->color->b / *env->dist * LUM > 255)
+			? 255 : (double)env->color->b / *env->dist * LUM;
 		wolf3d_render(env, WIDTH / 2 - i, color_convert(*env->color));
 		env->ray.dir = (t_2d_vec)
 			{env->player.view_dir.x - new_y, env->player.view_dir.y + new_x};
@@ -52,9 +55,12 @@ int	hook_expose(t_env *env)
 				/ (sqrt(pow(env->ray.dir.x, 2) + pow(env->ray.dir.y, 2))
 				* sqrt(pow(env->player.view_dir.x, 2)
 				+ pow(env->player.view_dir.y, 2)));
-		env->color->r = ((double)env->color->r / *env->dist * LUM > 255) ? 255 : (double)env->color->r / *env->dist * LUM;
-		env->color->g = ((double)env->color->g / *env->dist * LUM > 255) ? 255 : (double)env->color->g / *env->dist * LUM;
-		env->color->b = ((double)env->color->b / *env->dist * LUM > 255) ? 255 : (double)env->color->b / *env->dist * LUM;
+		env->color->r = ((double)env->color->r / *env->dist * LUM > 255)
+			? 255 : (double)env->color->r / *env->dist * LUM;
+		env->color->g = ((double)env->color->g / *env->dist * LUM > 255)
+			? 255 : (double)env->color->g / *env->dist * LUM;
+		env->color->b = ((double)env->color->b / *env->dist * LUM > 255)
+			? 255 : (double)env->color->b / *env->dist * LUM;
 		wolf3d_render(env, WIDTH / 2 + i, color_convert(*env->color));
 		++i;
 	}

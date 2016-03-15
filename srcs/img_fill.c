@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 05:27:07 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/07 08:09:26 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/15 13:21:26 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,23 @@ void	img_fill_down(t_env *env, t_color color)
 	int		y;
 	int		size;
 	double	grad;
-	int		i;
 	t_color	tmp;
 
-	x = 0;
-	i = 0;
+	env->i = 0;
 	y = HEIGHT;
 	size = HEIGHT / 2;
 	grad = 100 / (double)size;
 	tmp = color;
 	while (y > size)
 	{
-		while (x < WIDTH)
-		{
+		x = -1;
+		while (++x < WIDTH)
 			img_putpixel(env, x, y, color_convert(color));
-			++x;
-		}
 		color = tmp;
-		color.r -= (grad * i);
-		color.g -= (grad * i);
-		color.b -= (grad * i);
-		x = 0;
-		++i;
+		color.r -= (grad * env->i);
+		color.g -= (grad * env->i);
+		color.b -= (grad * env->i);
+		++env->i;
 		--y;
 	}
 }
