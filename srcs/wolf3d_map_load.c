@@ -6,11 +6,35 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:17:34 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/15 13:34:43 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/15 14:25:04 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+static void	get_color(t_env *env, int i, int j, char *line)
+{
+	if (line[i] == '1')
+		env->map.color[j][i] = color_get(255, 0, 0, 0);
+	else if (line[i] == '2')
+		env->map.color[j][i] = color_get(0, 255, 0, 0);
+	else if (line[i] == '3')
+		env->map.color[j][i] = color_get(0, 0, 255, 0);
+	else if (line[i] == '4')
+		env->map.color[j][i] = color_get(255, 255, 0, 0);
+	else if (line[i] == '5')
+		env->map.color[j][i] = color_get(255, 0, 255, 0);
+	else if (line[i] == '6')
+		env->map.color[j][i] = color_get(0, 255, 255, 0);
+	else if (line[i] == '7')
+		env->map.color[j][i] = color_get(139, 69, 19, 0);
+	else if (line[i] == '8')
+		env->map.color[j][i] = color_get(42, 255, 42, 0);
+	else if (line[i] == '9')
+		env->map.color[j][i] = color_get(255, 255, 255, 0);
+	else
+		env->map.color[j][i] = color_get(0, 0, 0, 0);
+}
 
 static void	map_get_color(t_env *env, char *line, int j)
 {
@@ -21,26 +45,7 @@ static void	map_get_color(t_env *env, char *line, int j)
 	lenght = ft_strlen(line);
 	while (i < lenght)
 	{
-		if (line[i] == '1')
-			env->map.color[j][i] = color_get(255, 0, 0, 0);
-		else if (line[i] == '2')
-			env->map.color[j][i] = color_get(0, 255, 0, 0);
-		else if (line[i] == '3')
-			env->map.color[j][i] = color_get(0, 0, 255, 0);
-		else if (line[i] == '4')
-			env->map.color[j][i] = color_get(255, 255, 0, 0);
-		else if (line[i] == '5')
-			env->map.color[j][i] = color_get(255, 0, 255, 0);
-		else if (line[i] == '6')
-			env->map.color[j][i] = color_get(0, 255, 255, 0);
-		else if (line[i] == '7')
-			env->map.color[j][i] = color_get(139, 69, 19, 0);
-		else if (line[i] == '8')
-			env->map.color[j][i] = color_get(42, 255, 42, 0);
-		else if (line[i] == '9')
-			env->map.color[j][i] = color_get(255, 255, 255, 0);
-		else
-			env->map.color[j][i] = color_get(0, 0, 0, 0);
+		get_color(env, i, j, line);
 		++i;
 	}
 }
@@ -53,7 +58,7 @@ static void	alloc_map(t_env *env, char **line, int j)
 		wolf3d_exit(&env, "alloc_map: ft_strdup have failed! (map)");
 	}
 	if (!(env->map.color[j] =
-		(t_color*)malloc(sizeof(t_color) * ft_strlen(*line))))
+				(t_color*)malloc(sizeof(t_color) * ft_strlen(*line))))
 	{
 		(*line != NULL) ? free(*line) : 0;
 		wolf3d_exit(&env, "alloc_map: ft_strdup have failed! (map)");
@@ -106,8 +111,4 @@ void		wolf3d_map_load(t_env *env)
 	env->map.size_y = j * BLOCK;
 	(ret == -1) ? wolf3d_exit(&env, "wolf3d_map_load: gnl") : 0;
 	((close(env->fd)) == -1) ? wolf3d_exit(&env, "wolf3d_map_load: close") : 0;
-	ft_putendl("Map:");
-	env->i = -1;
-	while (env->map.map[++env->i] != NULL)
-		ft_putendl(env->map.map[env->i]);
 }

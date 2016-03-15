@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:15:05 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/15 13:22:46 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/15 14:25:58 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	wolf3d_player_draw(t_env *env)
 	j = 0;
 	while (j < PLAYER_SIZE)
 	{
-		i = 0;
-		while (i < PLAYER_SIZE)
+		i = -1;
+		while (++i < PLAYER_SIZE)
 		{
 			img_putline(env,
 					(t_2d_pnt){env->player.pos.x + i, env->player.pos.y + j},
@@ -36,7 +36,6 @@ void	wolf3d_player_draw(t_env *env)
 					(env->player.pos.x + env->player.view_dir.x) + i,
 					(env->player.pos.y + env->player.view_dir.y) + j,
 					0xff00ff);
-			++i;
 		}
 		++j;
 	}
