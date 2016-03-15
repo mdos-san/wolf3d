@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:03:38 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/11 10:58:13 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/15 14:11:18 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,10 @@ t_env	*wolf3d_init(int ac, char **av)
 {
 	t_env *env;
 
-	ft_putnbrl(sizeof(t_env));
 	if (!(env = (t_env*)malloc(sizeof(t_env))))
 		wolf3d_exit(&env, "wolf3d_init: malloc");
-	if (!(env->color = (t_color*)malloc(sizeof(t_color))))
-		wolf3d_exit(&env, "wolf3d_init: malloc");
-	env->i = 0;
-	env->dist = (double*)malloc(sizeof(double));
+	env->color = color_get(255, 255, 255, 0);
+	env->dist = 0;
 	env->ac = ac;
 	env->av = av;
 	env->ray.o.x = 0;

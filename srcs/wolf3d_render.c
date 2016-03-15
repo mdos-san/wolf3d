@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 08:08:33 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/07 08:08:36 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/15 14:09:23 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	wolf3d_render(t_env *env, int col, unsigned int color)
 
 	if (env->dist != 0)
 	{
-		up = (HEIGHT / 2) - HEIGHT * 4 / *env->dist;
-		down = (HEIGHT / 2) + HEIGHT * 4 / *env->dist;
+		up = (HEIGHT / 2) - HEIGHT * 4 / env->dist;
+		down = (HEIGHT / 2) + HEIGHT * 4 / env->dist;
 		(up <= 0) ? (up = -1) : 0;
 		(down > HEIGHT) ? (down = HEIGHT) : 0;
 		img_putline(env,

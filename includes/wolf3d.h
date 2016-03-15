@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/11 11:10:19 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/15 14:07:36 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ typedef struct	s_env
 	t_2d_ray	ray2;
 	int			player_size;
 	int			i;
-	double		*dist;
-	t_color		*color;
+	double		dist;
+	t_color		color;
 	t_color		prev_right;
 	t_color		prev_left;
 	char		part_screen;
