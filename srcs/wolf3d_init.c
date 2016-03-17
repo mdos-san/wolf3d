@@ -6,11 +6,17 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:03:38 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/15 14:11:18 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/17 14:24:13 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+static int	init_texture(t_env *env)
+{
+	textures_load(env, 0, "textures/wall1.xpm");
+	return (1);
+}
 
 t_env	*wolf3d_init(int ac, char **av)
 {
@@ -22,8 +28,6 @@ t_env	*wolf3d_init(int ac, char **av)
 	env->dist = 0;
 	env->ac = ac;
 	env->av = av;
-	env->ray.o.x = 0;
-	env->ray.o.x = 0;
 	env->ray.dir.x = 0;
 	env->ray.dir.x = 0;
 	env->ray.inter.x = 0;
@@ -38,5 +42,6 @@ t_env	*wolf3d_init(int ac, char **av)
 		wolf3d_exit(&env, "wolf3d_init: mlx_new_window");
 	(env)->img = NULL;
 	img_clear(env);
+	init_texture(env);
 	return (env);
 }
