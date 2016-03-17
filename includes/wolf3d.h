@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/17 13:21:48 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/17 15:05:34 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct	s_2d_ray
 	t_2d_pnt	o;
 	t_2d_vec	dir;
 	t_2d_pnt	inter;
+	char		col;
 }				t_2d_ray;
 
 typedef struct	s_player
@@ -104,6 +105,7 @@ typedef struct	s_env
 	char		part_screen;
 	char		ev_draw_map;
 	char		ev_color;
+	char		ev_textures;
 	t_img		textures[NB_TEXTURE];
 }				t_env;
 
@@ -139,5 +141,6 @@ t_2d_pnt		pnt_2d_get(double x, double y);
 t_2d_vec		*vec_2d_new(double x, double y);
 void			vec_2d_del(t_2d_vec **addr);
 t_2d_vec		vec_2d_get(double x, double y);
+int				textures_load(t_env *env, int nbr, char *path);
 
 #endif
