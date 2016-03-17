@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/03/07 05:33:00 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/03/17 13:23:55 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ TMP_C		=\
 			pnt_2d_del.c\
 			player_new.c\
 			player_del.c\
+			textures_load.c\
 			main.c
 SRC_C		= $(TMP_C:%=src/%)
 
