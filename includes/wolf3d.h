@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/15 14:07:36 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/17 13:16:21 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,17 @@ typedef struct	s_map
 	char	**map;
 	int		size_y;
 }				t_map;
+
+typedef struct	s_img
+{
+	void	*ptr;
+	int		width;
+	int		height;
+	char	*data;
+	int		bpp;
+	int		sl;
+	int		ed;
+}				t_img;
 
 typedef struct	s_env
 {
