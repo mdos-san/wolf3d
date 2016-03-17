@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/03/17 13:23:55 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/03/17 17:15:31 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		= wolf3d
 OS			= $(shell uname)
 
 COMPILER	= gcc
-FLAGS		= -Wall -Werror -Wextra -g -fsanitize=address -I./includes
+FLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address -I./includes
 LIBS		= -L./libs -lm -lft -lcolor -lmlx -framework OpenGL -framework AppKit
 MLX_DIR		= minilibx_macos
 

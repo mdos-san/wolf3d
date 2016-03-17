@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:03:38 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/17 15:58:53 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/17 17:57:23 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	init_texture(t_env *env)
 	return (1);
 }
 
-t_env	*wolf3d_init(int ac, char **av)
+t_env		*wolf3d_init(int ac, char **av)
 {
 	t_env *env;
 

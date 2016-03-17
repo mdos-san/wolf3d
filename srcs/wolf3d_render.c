@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 08:08:33 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/17 16:31:34 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/17 17:57:00 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,34 @@
 
 static void	render_texture(t_env *env, int col, double down, double nb_pixel)
 {
-	double	i;
 	int		nb_texture;
 	double	percent_width;
 	int		col_t;
+	double	x;
+	double	y;
 
-	i = 0;
-	nb_texture = env->map.map[(int)(env->ray.inter.y / BLOCK)][(int)(env->ray.inter.x / BLOCK)] - 48 - 1;
+	env->i = 0;
+	nb_texture = env->map.map[(int)(env->ray.inter.y / BLOCK)]
+								[(int)(env->ray.inter.x / BLOCK)] - 48 - 1;
 	percent_width = (env->ray.col == 1) ?
 		(int)(env->ray.inter.y / BLOCK) - env->ray.inter.y / BLOCK :
 		(int)(env->ray.inter.x / BLOCK) - env->ray.inter.x / BLOCK;
 	col_t = fabs(env->textures[nb_texture].width * percent_width);
-	while (down - i > HEIGHT)
-		++i;
-	while (i < nb_pixel && down - i > 0)
+	while (down - env->i > HEIGHT)
+		++env->i;
+	x = col_t * env->textures[nb_texture].bpp;
+	y = (double)env->textures[nb_texture].height / nb_pixel;
+	while (env->i < nb_pixel && env->i < down)
 	{
-		img_putpixel(env, col, (int)down - i,
+		img_putpixel(env, col, (int)down - env->i,
 			*(unsigned int*)(env->textures[nb_texture].data +
-			col_t * env->textures[nb_texture].bpp +
-			(int)(env->textures[nb_texture].height - 1 - i *
-			env->textures[nb_texture].height / nb_pixel ) *
+			(int)x + (int)(env->textures[nb_texture].height - 1 - env->i * y) *
 			env->textures[nb_texture].sl));
-		++i;
+		++env->i;
 	}
 }
 
-void	wolf3d_render(t_env *env, int col, unsigned int color)
+void		wolf3d_render(t_env *env, int col, unsigned int color)
 {
 	double	up;
 	double	down;
