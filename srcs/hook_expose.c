@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:50:05 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/15 14:10:31 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/17 23:36:57 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,14 @@ int			hook_expose(t_env *env)
 		new_x = env->player.view_dir.x / nbr * i;
 		new_y = env->player.view_dir.y / nbr * i;
 		render(env, new_x, new_y, i);
+	}
+	if (env->ev_frame == 1)
+	{
+		if (env->frame >= 8)
+			env->frame = 0;
+		else
+			env->frame += 0.3;
+		env->ev_frame = 0;
 	}
 	(env->ev_draw_map == 1) ? wolf3d_map_draw(env) : 0;
 	(env->ev_draw_map == 1) ? wolf3d_player_draw(env) : 0;

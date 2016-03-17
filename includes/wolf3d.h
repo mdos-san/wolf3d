@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/17 15:05:34 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/17 23:24:27 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ typedef struct	s_env
 	char		ev_color;
 	char		ev_textures;
 	t_img		textures[NB_TEXTURE];
+	double		frame;
+	char		ev_frame;
 }				t_env;
 
 t_env			*wolf3d_init(int ac, char **av);

@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 08:08:33 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/17 17:57:00 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/17 23:37:48 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ static void	render_texture(t_env *env, int col, double down, double nb_pixel)
 	env->i = 0;
 	nb_texture = env->map.map[(int)(env->ray.inter.y / BLOCK)]
 								[(int)(env->ray.inter.x / BLOCK)] - 48 - 1;
+	if (nb_texture == 8)
+	{
+		env->ev_frame = 1;
+		nb_texture = env->frame;
+	}
 	percent_width = (env->ray.col == 1) ?
 		(int)(env->ray.inter.y / BLOCK) - env->ray.inter.y / BLOCK :
 		(int)(env->ray.inter.x / BLOCK) - env->ray.inter.x / BLOCK;

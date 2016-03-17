@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:03:38 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/17 17:57:23 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/17 23:11:33 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int	init_texture(t_env *env)
 	textures_load(env, 7, "textures/wall7.xpm");
 	textures_load(env, 8, "textures/wall8.xpm");
 	env->ev_textures = 0;
+	env->frame = 0;
+	env->ev_frame = 0;
 	return (1);
 }
 
