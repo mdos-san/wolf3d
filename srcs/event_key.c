@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:31:19 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/15 13:30:59 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/17 15:32:49 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		key_press(int keycode, t_env *env)
 
 int		key_rl(int keycode, t_env *env)
 {
+	ft_putnbrl(keycode);
 	(keycode == 13 || keycode == 119 || keycode == 65362) ?
 		(env->player.movement_y = 0) : 0;
 	(keycode == 1 || keycode == 115 || keycode == 65364) ?
@@ -42,6 +43,8 @@ int		key_rl(int keycode, t_env *env)
 		env->ev_draw_map = (env->ev_draw_map == 0) ? 1 : 0;
 	if (keycode == 122 || keycode == 65470)
 		env->ev_color = (env->ev_color == 0) ? 1 : 0;
+	if (keycode == 120)
+		env->ev_textures = (env->ev_textures == 0) ? 1 : 0;
 	return (1);
 }
 
