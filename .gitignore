@@ -1,0 +1,6 @@
+*.swp
+libs/libft.a
+libs/libmlx.a
+libs/libcolor.a
+objects
+wolf3d
