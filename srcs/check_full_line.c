@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 13:09:24 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/28 13:41:38 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/28 14:08:42 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	check_full_line(t_env *env, char **line)
 {
 	int	i;
-	
+
 	i = 0;
 	while ((*line)[i] != '\0')
 	{

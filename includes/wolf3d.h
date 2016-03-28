@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/28 13:36:24 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/28 14:50:17 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ typedef struct	s_env
 	double		frame;
 	char		ev_frame;
 	int			size_line;
+	double		m;
+	double		p;
 }				t_env;
 
 t_env			*wolf3d_init(int ac, char **av);
@@ -148,5 +150,9 @@ int				textures_load(t_env *env, int nbr, char *path);
 void			check_full_line(t_env *env, char **line);
 void			check_extremity(t_env *env, char **line);
 int				wolf3d_player_colision(t_env *env, t_2d_pnt a);
+void			assign_x
+				(t_env *env, t_2d_ray *ray, double *distx, t_2d_pnt cursor);
+void			assign_y
+				(t_env *env, t_2d_ray *ray, double *disty, t_2d_pnt cursor);
 
 #endif
