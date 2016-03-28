@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:06:33 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/14 13:53:03 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/28 13:44:36 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	wolf3d_player_init(t_env *env)
 		{
 			if (env->map.map[(int)(env->i / BLOCK)][(int)(j / BLOCK)] == '#')
 			{
-				env->player.pos.x = (double)j + 0.500000001;
-				env->player.pos.y = (double)env->i + 0.50000001;
+				env->player.pos.x = (double)j + 0.5000001;
+				env->player.pos.y = (double)env->i + 0.500001;
 				return (1);
 			}
 			++j;
