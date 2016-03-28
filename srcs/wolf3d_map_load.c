@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:17:34 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/15 14:25:04 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/28 13:28:35 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ static void	map_get_color(t_env *env, char *line, int j)
 
 static void	alloc_map(t_env *env, char **line, int j)
 {
+	(env->i == 0) ? check_full_line(env, line) : check_extremity(env, line);
+	env->size_line = (env->size_line == -1 ||
+		(int)ft_strlen(*line) == env->size_line) ? (int)ft_strlen(*line) :
+		wolf3d_exit(&env, "Map error, check size of lines");
 	if ((env->map.map[env->i] = ft_strdup(*line)) == NULL)
 	{
 		(*line != NULL) ? free(*line) : 0;
@@ -94,6 +98,7 @@ void		wolf3d_map_load(t_env *env)
 
 	j = 0;
 	env->i = 0;
+	env->size_line = -1;
 	line = NULL;
 	nb_line = get_nb_line(env);
 	if (!(env->map.map = (char**)malloc(sizeof(char*) * (nb_line + 1))))
@@ -108,6 +113,7 @@ void		wolf3d_map_load(t_env *env)
 		alloc_map(env, &line, j);
 		++j;
 	}
+	check_full_line(env, &(env->map.map[j - 1]));
 	env->map.size_y = j * BLOCK;
 	(ret == -1) ? wolf3d_exit(&env, "wolf3d_map_load: gnl") : 0;
 	((close(env->fd)) == -1) ? wolf3d_exit(&env, "wolf3d_map_load: close") : 0;

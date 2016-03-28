@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:03:38 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/17 23:11:33 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/28 12:50:26 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int	init_texture(t_env *env)
 	env->ev_textures = 0;
 	env->frame = 0;
 	env->ev_frame = 0;
+	env->size_line = -1;
 	return (1);
 }
 

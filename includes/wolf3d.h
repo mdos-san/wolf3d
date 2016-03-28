@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/17 23:24:27 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/28 13:14:46 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,11 @@ typedef struct	s_env
 	t_img		textures[NB_TEXTURE];
 	double		frame;
 	char		ev_frame;
+	int			size_line;
 }				t_env;
 
 t_env			*wolf3d_init(int ac, char **av);
-void			wolf3d_exit(t_env **env, char *str);
+int				wolf3d_exit(t_env **env, char *str);
 void			wolf3d_start(t_env *env);
 void			wolf3d_map_load(t_env *env);
 void			wolf3d_map_del(char ***addr);
@@ -144,5 +145,7 @@ t_2d_vec		*vec_2d_new(double x, double y);
 void			vec_2d_del(t_2d_vec **addr);
 t_2d_vec		vec_2d_get(double x, double y);
 int				textures_load(t_env *env, int nbr, char *path);
+void			check_full_line(t_env *env, char **line);
+void			check_extremity(t_env *env, char **line);
 
 #endif
