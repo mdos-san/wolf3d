@@ -1,4 +1,5 @@
 *.swp
+libs/minilibx_linux/libmlx_Linux.a
 libs/libft.a
 libs/libmlx.a
 libs/libcolor.a

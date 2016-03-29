@@ -1,4 +1,4 @@
-
+#include	<stdlib.h>
 #include	"mlx.h"
 #include	"mlx_int.h"
 

@@ -42,7 +42,7 @@ int		key_rl(int keycode, t_env *env)
 		env->ev_draw_map = (env->ev_draw_map == 0) ? 1 : 0;
 	if (keycode == 122 || keycode == 65470)
 		env->ev_color = (env->ev_color == 0) ? 1 : 0;
-	if (keycode == 120)
+	if (keycode == 120 || keycode == 65471)
 		env->ev_textures = (env->ev_textures == 0) ? 1 : 0;
 	return (1);
 }
