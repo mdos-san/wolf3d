@@ -87,7 +87,6 @@ static void	exeption_x(t_env *env, t_2d_ray *ray)
 	else
 		env->color = color_get(255, 255, 0, 0);
 	ray->col = 2;
-	ft_putendl("exepx");
 }
 
 static void	exeption_y(t_env *env, t_2d_ray *ray)

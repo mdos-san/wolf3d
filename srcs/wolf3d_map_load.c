@@ -113,6 +113,7 @@ void		wolf3d_map_load(t_env *env)
 		alloc_map(env, &line, j);
 		++j;
 	}
+	(j == 0 || j == 1) ? wolf3d_exit(&env, "map need at least 3 line --'") : 0;
 	check_full_line(env, &(env->map.map[j - 1]));
 	env->map.size_y = j * BLOCK;
 	(ret == -1) ? wolf3d_exit(&env, "wolf3d_map_load: gnl") : 0;
