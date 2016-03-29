@@ -87,6 +87,7 @@ static void	exeption_x(t_env *env, t_2d_ray *ray)
 	else
 		env->color = color_get(255, 255, 0, 0);
 	ray->col = 2;
+	ft_putendl("exepx");
 }
 
 static void	exeption_y(t_env *env, t_2d_ray *ray)
@@ -106,10 +107,11 @@ static void	exeption_y(t_env *env, t_2d_ray *ray)
 		env->color =
 			env->map.color[(int)(cursor.y / BLOCK)][(int)(cursor.x / BLOCK)];
 	else if (ray->dir.x > 0)
-		env->color = color_get(255, 0, 0, 0);
+		env->color = color_get(255, 165, 0, 0);
 	else
 		env->color = color_get(0, 255, 0, 0);
 	ray->col = 1;
+	ray->inter = cursor;
 }
 
 void		wolf3d_ray_draw(t_env *env, t_2d_ray *ray, unsigned int color,

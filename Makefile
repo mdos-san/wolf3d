@@ -79,30 +79,24 @@ objects:
 
 libs/libft.a	:
 	@echo "Making libft... \c"
-	@make -C libs/libft
+	@make -sC libs/libft
 	@mv libs/libft/libft.a libs
-	@make -C libs/libft/ fclean
+	@make -sC libs/libft/ fclean
 	@echo "[ok]"
 
 libs/libcolor.a	:
 	@echo "Making libcolor... \c"
-	@make -C libs/libcolor
+	@make -sC libs/libcolor > /dev/null
 	@mv libs/libcolor/libcolor.a libs
-	@make -C libs/libcolor fclean
+	@make -sC libs/libcolor fclean /dev/null
 	@echo "[ok]"
 
 libs/libmlx.a	:
 	@echo "Making libmlx... \c"
-	@echo $(MLX_DIR)
-	@make -s -C libs/$(MLX_DIR)/
+	@make -s -C libs/$(MLX_DIR)/ > /dev/null
 	@mv libs/$(MLX_DIR)/libmlx.a libs
-	@make -s -C libs/$(MLX_DIR)/ clean
+	@make -s -C libs/$(MLX_DIR)/ clean > /dev/null
 	@echo "[ok]"
-
-gupdate	:
-	git add srcs includes Makefile
-	git commit -m "update"
-	git push origin dev
 
 objects/%.o	: srcs/%.c
 	@echo "Compiling $<... \c"

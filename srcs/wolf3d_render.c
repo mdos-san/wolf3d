@@ -14,8 +14,9 @@
 
 static void	init_texture(t_env *env, int *nb_texture)
 {
+	(env->ray.inter.x == -1) ? (env->ray.inter.x = env->ray.o.x) : 0;
 	*nb_texture = env->map.map[(int)(env->ray.inter.y / BLOCK)]
-								[(int)(env->ray.inter.x / BLOCK)] - 48 - 1;
+							[(int)(env->ray.inter.x / BLOCK)] - 48 - 1;
 	if (*nb_texture == 8)
 	{
 		env->ev_frame = 1;
@@ -31,14 +32,12 @@ static void	render_texture(t_env *env, int col, double down, double nb_pixel)
 	double	x;
 	double	y;
 
-	env->i = 0;
+	env->i = (down > HEIGHT) ? down - HEIGHT : 0;
 	init_texture(env, &nb_texture);
 	percent_width = (env->ray.col == 1) ?
 		(int)(env->ray.inter.y / BLOCK) - env->ray.inter.y / BLOCK :
 		(int)(env->ray.inter.x / BLOCK) - env->ray.inter.x / BLOCK;
 	col_t = fabs(env->textures[nb_texture].width * percent_width);
-	while (down - env->i > HEIGHT)
-		++env->i;
 	x = col_t * env->textures[nb_texture].bpp;
 	y = (double)env->textures[nb_texture].height / nb_pixel;
 	while (env->i < nb_pixel && env->i < down)
