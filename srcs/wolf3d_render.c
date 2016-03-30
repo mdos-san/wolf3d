@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 08:08:33 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/28 13:58:29 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/30 15:29:13 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	init_texture(t_env *env, int *nb_texture)
 {
 	(env->ray.inter.x == -1) ? (env->ray.inter.x = env->ray.o.x) : 0;
 	*nb_texture = env->map.map[(int)(env->ray.inter.y / BLOCK)]
-							[(int)(env->ray.inter.x / BLOCK)] - 48 - 1;
+							[(int)(env->ray.inter.x / BLOCK)] - 48;
 	if (*nb_texture == 8)
 	{
 		env->ev_frame = 1;

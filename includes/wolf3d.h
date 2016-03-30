@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/28 15:10:46 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/30 15:26:39 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define TITLE "WOLF3D"
 # define PLAYER_SIZE 2
 # define PCNT PLAYER_SIZE / 2
-# define NB_TEXTURE 9
+# define NB_TEXTURE 10
 
 typedef struct	s_2d_pnt
 {

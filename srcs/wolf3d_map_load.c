@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:17:34 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/30 13:45:19 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/30 14:08:27 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static void	get_color(t_env *env, int i, int j, char *line)
 {
-	if (line[i] == '1')
+	if (line[i] == '0')
+		env->map.color[j][i] = color_get(100, 100, 100, 0);
+	else if (line[i] == '1')
 		env->map.color[j][i] = color_get(255, 0, 0, 0);
 	else if (line[i] == '2')
 		env->map.color[j][i] = color_get(0, 255, 0, 0);
@@ -29,7 +31,7 @@ static void	get_color(t_env *env, int i, int j, char *line)
 	else if (line[i] == '7')
 		env->map.color[j][i] = color_get(139, 69, 19, 0);
 	else if (line[i] == '8')
-		env->map.color[j][i] = color_get(42, 255, 42, 0);
+		env->map.color[j][i] = color_get(42, 125, 42, 0);
 	else if (line[i] == '9')
 		env->map.color[j][i] = color_get(255, 255, 255, 0);
 	else
