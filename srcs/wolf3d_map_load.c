@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:17:34 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/30 13:34:52 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/30 13:45:19 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	get_color(t_env *env, int i, int j, char *line)
 		env->map.color[j][i] = color_get(0, 0, 0, 0);
 }
 
-static void	map_get_color(t_env *env, char *line, int j)
+static void	map_get_color(t_env *env, char *line)
 {
 	int	i;
 	int	lenght;
@@ -45,12 +45,12 @@ static void	map_get_color(t_env *env, char *line, int j)
 	lenght = ft_strlen(line);
 	while (i < lenght)
 	{
-		get_color(env, i, j, line);
+		get_color(env, i, env->i, line);
 		++i;
 	}
 }
 
-static void	alloc_map(t_env *env, char **line, int j)
+static void	alloc_map(t_env *env, char **line)
 {
 	(env->i == 0) ? check_full_line(env, line) : check_extremity(env, line);
 	env->size_line = (env->size_line == -1 ||
@@ -61,13 +61,13 @@ static void	alloc_map(t_env *env, char **line, int j)
 		(*line != NULL) ? free(*line) : 0;
 		wolf3d_exit(&env, "alloc_map: ft_strdup have failed! (map)");
 	}
-	if (!(env->map.color[j] =
+	if (!(env->map.color[env->i] =
 				(t_color*)malloc(sizeof(t_color) * ft_strlen(*line))))
 	{
 		(*line != NULL) ? free(*line) : 0;
 		wolf3d_exit(&env, "alloc_map: ft_strdup have failed! (map)");
 	}
-	map_get_color(env, *line, j);
+	map_get_color(env, *line);
 	(*line != NULL) ? free(*line) : 0;
 	++env->i;
 }
@@ -99,9 +99,7 @@ void		wolf3d_map_load(t_env *env)
 	int		ret;
 	int		nb_line;
 	char	*line;
-	int		j;
 
-	j = 0;
 	env->i = 0;
 	line = NULL;
 	nb_line = get_nb_line(env);
@@ -113,14 +111,12 @@ void		wolf3d_map_load(t_env *env)
 	if ((env->fd = open(env->av[1], O_RDWR)) == -1)
 		wolf3d_exit(&env, "wolf3d_map_load: open");
 	while ((ret = get_next_line(env->fd, &line)) > 0)
-	{
-		alloc_map(env, &line, j);
-		++j;
-	}
+		alloc_map(env, &line);
 	(line) ? free(line) : 0;
-	(j == 0 || j == 1) ? wolf3d_exit(&env, "map need at least 3 line --'") : 0;
-	check_full_line(env, &(env->map.map[j - 1]));
-	env->map.size_y = j * BLOCK;
+	(env->i == 0 || env->i == 1) ?
+		wolf3d_exit(&env, "map need at least 3 line --'") : 0;
+	check_full_line(env, &(env->map.map[env->i - 1]));
+	env->map.size_y = env->i * BLOCK;
 	(ret == -1) ? wolf3d_exit(&env, "wolf3d_map_load: gnl") : 0;
 	((close(env->fd)) == -1) ? wolf3d_exit(&env, "wolf3d_map_load: close") : 0;
 }
