@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:59:09 by mdos-san          #+#    #+#              #
-#    Updated: 2016/02/18 07:32:22 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/03/30 13:47:30 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,16 +43,26 @@ SRC_O=$(SRC_C:.c=.o)
 all: $(NAME)
 
 $(NAME): $(SRC_O)
+	@echo "Creating libft.a..."
 	@ar rc $(NAME) $(SRC_O)
 	@ranlib $(NAME)
+	@echo "Done !"
 
 %.o: %.c
+	@echo "Compiling $<"
 	@$(COMPILER) $(FLAGS) $(INCLUDES) $<
 
 clean: 
+	@echo "Removing *.o"
 	@rm -rf $(SRC_O)
+	@echo "Done"
 
 fclean: clean
+	@echo "Removing libft.a"
 	@rm -rf $(NAME)
+	@echo "Done"
 
 re: fclean all
+
+norm	:
+	@norminette *.c includes
