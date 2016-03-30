@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:17:34 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/30 14:08:27 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/30 16:28:36 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,10 @@ void		wolf3d_map_load(t_env *env)
 		wolf3d_exit(&env, "wolf3d_map_load: malloc (map)");
 	if (!(env->map.color = (t_color**)malloc(sizeof(t_color*) * (nb_line))))
 		wolf3d_exit(&env, "wolf3d_map_load: malloc (map)");
+	ft_memset(env->map.map, 0, sizeof(char*) * (nb_line + 1));
 	env->map.map[nb_line] = NULL;
+	ft_memset(env->map.color, 0, sizeof(char*) * (nb_line + 1));
+	env->map.color[nb_line] = NULL;
 	if ((env->fd = open(env->av[1], O_RDWR)) == -1)
 		wolf3d_exit(&env, "wolf3d_map_load: open");
 	while ((ret = get_next_line(env->fd, &line)) > 0)

@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:09:51 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/30 15:45:04 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/30 16:30:41 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	wolf3d_exit(t_env **env, char *str)
 			mlx_destroy_image((*env)->mlx, (*env)->img);
 		if ((*env)->win)
 			mlx_destroy_window((*env)->mlx, (*env)->win);
-		free(*env);
+		(*env) ? free(*env) : 0;
+		(*env) = NULL;
 	}
 	ft_putendl(str);
 	exit(0);
