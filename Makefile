@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/03/17 17:15:31 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/03/30 13:52:27 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		= wolf3d
 OS			= $(shell uname)
 
 COMPILER	= gcc
-FLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address -I./includes
+FLAGS		= -Wall -Werror -Wextra -g -I./includes
 LIBS		= -L./libs -lm -lft -lcolor -lmlx -framework OpenGL -framework AppKit
 MLX_DIR		= minilibx_macos
 
@@ -50,6 +50,8 @@ TMP_C		=\
 			player_new.c\
 			player_del.c\
 			textures_load.c\
+			check_full_line.c\
+			assign.c\
 			main.c
 SRC_C		= $(TMP_C:%=src/%)
 
@@ -77,30 +79,24 @@ objects:
 
 libs/libft.a	:
 	@echo "Making libft... \c"
-	@make -C libs/libft
+	@make -sC libs/libft
 	@mv libs/libft/libft.a libs
-	@make -C libs/libft/ fclean
+	@make -sC libs/libft/ fclean
 	@echo "[ok]"
 
 libs/libcolor.a	:
 	@echo "Making libcolor... \c"
-	@make -C libs/libcolor
+	@make -sC libs/libcolor > /dev/null
 	@mv libs/libcolor/libcolor.a libs
-	@make -C libs/libcolor fclean
+	@make -sC libs/libcolor fclean /dev/null
 	@echo "[ok]"
 
 libs/libmlx.a	:
 	@echo "Making libmlx... \c"
-	@echo $(MLX_DIR)
-	@make -s -C libs/$(MLX_DIR)/
+	@make -s -C libs/$(MLX_DIR)/ > /dev/null
 	@mv libs/$(MLX_DIR)/libmlx.a libs
-	@make -s -C libs/$(MLX_DIR)/ clean
+	@make -s -C libs/$(MLX_DIR)/ clean > /dev/null
 	@echo "[ok]"
-
-gupdate	:
-	git add srcs includes Makefile
-	git commit -m "update"
-	git push origin dev
 
 objects/%.o	: srcs/%.c
 	@echo "Compiling $<... \c"
@@ -125,5 +121,10 @@ fclean		: clean
 	@echo "[ok]"
 
 re			: fclean all
+
+norm		:
+	@norminette srcs includes
+	@make norm -sC libs/libft
+	@make norm -sC libs/libcolor
 
 .PHONY: re fclean clean all

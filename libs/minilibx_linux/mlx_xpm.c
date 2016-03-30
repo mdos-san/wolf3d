@@ -8,7 +8,7 @@
 ** Last update Sat Oct  1 14:56:13 2005 Olivier Crouzet
 */
 
-
+#include	<string.h>
 #include	"mlx_int.h"
 
 extern struct s_col_name mlx_col_name[];
@@ -58,8 +58,7 @@ char	*mlx_int_static_line(char **xpm_data,int *pos,int size)
 	return ((char *)0);
       len = len2;
     }
-  /* strcpy(copy,str); */
-  strlcpy(copy, str, len2+1);
+  strcpy(copy,str);
   return (copy);
 }
 

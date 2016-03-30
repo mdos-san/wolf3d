@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 07:12:02 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/17 23:24:27 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/30 15:41:49 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <mlx.h>
 # include "libft.h"
 # include "libcolor.h"
-# include <stdio.h>
 # define KEYPRESS 2
 # define KEYPRESSMASK (1L<<0)
 # define WIDTH 800
@@ -27,11 +26,11 @@
 # define BLOCK 10
 # define SPEED 0.1
 # define SPEED_CAM 2
-# define LUM 20
+# define LUM 5
 # define TITLE "WOLF3D"
 # define PLAYER_SIZE 2
 # define PCNT PLAYER_SIZE / 2
-# define NB_TEXTURE 9
+# define NB_TEXTURE 10
 
 typedef struct	s_2d_pnt
 {
@@ -109,13 +108,16 @@ typedef struct	s_env
 	t_img		textures[NB_TEXTURE];
 	double		frame;
 	char		ev_frame;
+	int			size_line;
+	double		m;
+	double		p;
 }				t_env;
 
 t_env			*wolf3d_init(int ac, char **av);
-void			wolf3d_exit(t_env **env, char *str);
+int				wolf3d_exit(t_env **env, char *str);
 void			wolf3d_start(t_env *env);
 void			wolf3d_map_load(t_env *env);
-void			wolf3d_map_del(char ***addr);
+void			wolf3d_map_del(t_map *map);
 void			wolf3d_map_draw(t_env *env);
 int				wolf3d_map_is_wall(t_env *env, t_2d_pnt a);
 int				wolf3d_player_init(t_env *env);
@@ -144,5 +146,12 @@ t_2d_vec		*vec_2d_new(double x, double y);
 void			vec_2d_del(t_2d_vec **addr);
 t_2d_vec		vec_2d_get(double x, double y);
 int				textures_load(t_env *env, int nbr, char *path);
+void			check_full_line(t_env *env, char **line);
+void			check_extremity(t_env *env, char **line);
+int				wolf3d_player_colision(t_env *env, t_2d_pnt a);
+void			assign_x
+				(t_env *env, t_2d_ray *ray, double *distx, t_2d_pnt cursor);
+void			assign_y
+				(t_env *env, t_2d_ray *ray, double *disty, t_2d_pnt cursor);
 
 #endif
