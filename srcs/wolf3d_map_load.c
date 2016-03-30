@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 08:17:34 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/28 13:55:28 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/30 13:34:52 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,11 @@ static int	get_nb_line(t_env *env)
 	if ((env->fd = open(env->av[1], O_RDWR)) == -1)
 		wolf3d_exit(&env, "get_nb_line: open returned -1.");
 	while ((ret = get_next_line(env->fd, &line)) > 0)
+	{
 		++n;
+		(line) ? free(line) : 0;
+	}
+	(line) ? free(line) : 0;
 	(ret == -1) ? wolf3d_exit(&env, "wolf3d_map_load: gnl") : 0;
 	((close(env->fd)) == -1) ? wolf3d_exit(&env, "get_nb_line: close") : 0;
 	return (n);
@@ -113,6 +117,7 @@ void		wolf3d_map_load(t_env *env)
 		alloc_map(env, &line, j);
 		++j;
 	}
+	(line) ? free(line) : 0;
 	(j == 0 || j == 1) ? wolf3d_exit(&env, "map need at least 3 line --'") : 0;
 	check_full_line(env, &(env->map.map[j - 1]));
 	env->map.size_y = j * BLOCK;
