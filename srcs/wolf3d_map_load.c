@@ -107,11 +107,11 @@ void		wolf3d_map_load(t_env *env)
 	nb_line = get_nb_line(env);
 	if (!(env->map.map = (char**)malloc(sizeof(char*) * (nb_line + 1))))
 		wolf3d_exit(&env, "wolf3d_map_load: malloc (map)");
-	if (!(env->map.color = (t_color**)malloc(sizeof(t_color*) * (nb_line))))
+	if (!(env->map.color = (t_color**)malloc(sizeof(t_color*) * (nb_line + 1))))
 		wolf3d_exit(&env, "wolf3d_map_load: malloc (map)");
 	ft_memset(env->map.map, 0, sizeof(char*) * (nb_line + 1));
 	env->map.map[nb_line] = NULL;
-	ft_memset(env->map.color, 0, sizeof(char*) * (nb_line + 1));
+	ft_memset(env->map.color, 0, sizeof(t_color*) * (nb_line + 1));
 	env->map.color[nb_line] = NULL;
 	if ((env->fd = open(env->av[1], O_RDWR)) == -1)
 		wolf3d_exit(&env, "wolf3d_map_load: open");
